@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html  xmlns="http://www.w3.org/1999/html" style="background-size: 100%; background-image:url('images/black1926.jpg'); ">
+
+<head>
+    <title>SunHouse GameDev Studios</title>
+    <link rel="icon" type="image/ico" href="favicon.ico">
+    <link rel="shortcut icon" href="favicon.ico">
+    <meta name="viewport" content="width=device-width"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <link rel="stylesheet" type="text/css" href="style.css" >
+    <script type="text/javascript" language="JavaScript" src="scripts/main.js"></script>
+</head>
+
+<body onload="run()" >
+
+
+<div id="language">
+    <img src="images/us.png" title="English (EN)" 	style="width:2.5%;" onclick="SetLang('en')" accesskey="U"/>
+    <img src="images/br.png" title="Português (PT)" style="width:2.5%;" onclick="SetLang('br')" accesskey="B"/>
+    <img src="images/ar.png" title="Español (ES)" 	style="width:2.5%;" onclick="SetLang('es')" accesskey="A"/>
+</div>
+
+<header id="top">
+    <div class="navigation">
+
+        <div class="UpsideBand" style= ></div>
+        <div class="DownsideBand" style= ></div>
+        <div id="logo" >
+            <a href="/">
+                <h1 class="randomFont" >
+                    <img src="images/logo.png"  alt="SunHouse">
+
+
+                    SunHouse
+                    <!--<embed src="images/isotipo_byn.svg" width="50px" height="50px" type="image/svg+xml" />-->
+                    <!--<object data="images/isotipo_byn.svg" width="50px" height="50px" type="image/svg+xml"></object>-->
+                </h1>
+            </a>
+        </div>
+        <ul>
+            <li  >
+                <a href="news.html">
+                    <div lang="es"> noticias </div>
+                    <div lang="en" style="display: none;"> news </div>
+                    <div lang="br" style="display: none;"> InformaÇao </div>
+                </a>
+            </li>
+            <li >
+                <a href="about.html">
+                    <div lang="es"> acerca </div>
+                    <div lang="en" style="display: none;"> about </div>
+                    <div lang="br" style="display: none;"> nois </div>
+                </a>
+            </li >
+            <li >
+                <a href="works.html">
+                    <div lang="es"> trabajos </div>
+                    <div lang="en" style="display: none;"> works </div>
+                    <div lang="br" style="display: none;"> trabalhos </div>
+                </a>
+            </li>
+            <li >
+                <a href="contact.html">
+                    <div lang="es"> contacto </div>
+                    <div lang="en" style="display: none;"> contact </div>
+                    <div lang="br" style="display: none;"> contato </div>
+                </a>
+            </li>
+        </ul>
+
+    </div>
+
+    <![if (gt IE 5)&(lt IE 8)]>
+    <div class="UpsideBand" style="opacity: 0.5;" ></div>
+    <div class="DownsideBand" style="opacity: 0.5;" ></div>
+    <!--<h1>You're not using IE. Well done!</h1>-->
+    <![endif]>
+
+</header>
+
+
+<div class="wrapper">
+
+
+    <!--[if lt IE 9]>
+    <div class="MSSUCKS">
+    <![endif]--> <!-- MS IExplorer Check Up start-->
+
+    <section id="home" >
+        <!--<img src="images/Home.gif" style="width: 100%;" alt="">-->
+
+        <article style="margin: 10% auto auto 35%; text-align: center;">
+
+            <![if (gt IE 5)&(lt IE 8)]>
+            <img src="images/isotipo_color.png" style="width:256px; height: 256px; float:left;">
+            <h4 style="font-size: 4.0em; color:  #323131; padding-top: 64px; text-align: left; vertical-align: middle;" class="randomFont">
+                SunHouse
+                <span style="font-size: 0.3em; line-height: 0.3em;">
+                <sub>®<br></sub>
+                    <span style="vertical-align: top; text-align: center;">
+                <sup style="vertical-align: top; text-align: center;">
+                    Game Development Studio
+                </sup>
+                        </span>
+                </span>
+            </h4>
+            <![endif]>
+
+            <!--[if lt IE 9]>
+            <img src="images/Home.gif"  alt="SunHouse">
+            <![endif]-->
+
+        </article>
+
+    </section>
+
+    <!--[if lt IE 9]>
+    </div>
+    <![endif]--> <!-- MS IExplorer Check Up End-->
+
+</div>
+
+
+</body>
+
+</html>
