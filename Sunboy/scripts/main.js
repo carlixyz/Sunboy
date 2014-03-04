@@ -52,22 +52,22 @@
 
     };
 
-    runGame = function() {
-
-        var game = new Phaser.Game(900, 600, Phaser.CANVAS, '', { preload: preload, create: create });
-
-        function preload () {
-
-            game.load.image('logo', 'phaser.png');
-        }
-
-         function create () {
-
-            var logo = game.add.sprite(game.world.centerX, game.world.centerY, 'logo');
-            logo.anchor.setTo(0.5, 0.5);
-            Phaser.Canvas.addToDOM(game.canvas, "home", true);
-        }
-    };
+//    runGame = function() {
+//
+//        var game = new Phaser.Game(900, 600, Phaser.CANVAS, '', { preload: preload, create: create });
+//
+//        function preload () {
+//
+//            game.load.image('logo', 'phaser.png');
+//        }
+//
+//         function create () {
+//
+//            var logo = game.add.sprite(game.world.centerX, game.world.centerY, 'logo');
+//            logo.anchor.setTo(0.5, 0.5);
+//            Phaser.Canvas.addToDOM(game.canvas, "home", true);
+//        }
+//    };
 
                                                                                                                             // Función de inicio luego de cargar el Body
 

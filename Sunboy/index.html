@@ -80,7 +80,7 @@
 </header>
 
 
-<div class="wrapper">
+<div onload="run()" class="wrapper">
 
 
     <!--[if lt IE 9]>
@@ -89,9 +89,58 @@
 
     <section  id="home" >
         <!--<img src="images/Home.gif" style="width: 100%;" alt="">-->
+
         <script type="text/javascript" language="JavaScript" >
-            run();
-            runGame();
+
+            /* MAIN GAME SCRIPT SOURCE
+            *
+            *
+            *
+            *
+            *
+            */
+
+            var game = new Phaser.Game(900, 600, Phaser.CANVAS, '', { preload: preload, create: create });
+
+            var play  = false;
+            var start = true;
+            var end   = false;
+
+            var rounds = 0;
+            var time = 0;
+            var score = 0;
+
+            var boy ;
+            var world;
+            var items;
+            var enemys;
+
+
+            function preload ()
+            {
+                Phaser.Canvas.addToDOM(game.canvas, "home", true);
+                Phaser.Canvas.setBackgroundColor(game.canvas, "white");
+
+                game.load.image('logo', 'phaser.png');
+            }
+
+            function create ()
+            {
+
+                var logo = game.add.sprite(game.world.centerX, game.world.centerY, 'logo');
+                logo.anchor.setTo(0.5, 0.5);
+            }
+
+            function update()
+            {
+
+            }
+
+            function resetGame()
+            {
+
+            }
+
         </script>
 
 
