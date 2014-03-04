@@ -9,6 +9,23 @@
 
     <script type="text/javascript">
 
+        function loadCanvas(id) {                   // funcion de ejemplo no sirve para una goma
+            var canvas = document.createElement('canvas'),
+                    div = document.getElementById(id);
+            canvas.id     = "canvGameStage";
+            canvas.width  = 1000;
+            canvas.height = 768;
+            canvas.style.zIndex   = 8;
+            canvas.style.position = "absolute";
+            canvas.style.border   = "1px solid";
+            div.appendChild(canvas);
+        }
+
+        function setCanvas(id) {                    // funcion inventada por mi
+            var div = document.getElementById(id);
+            div.appendChild(canvas);
+        }
+
     window.onload = function() {
 
         var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create });
@@ -16,6 +33,7 @@
         function preload () {
 
             game.load.image('logo', 'phaser.png');
+            //        loadCanvas("divGameStage");
 
         }
 

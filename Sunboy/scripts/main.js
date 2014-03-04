@@ -11,6 +11,8 @@
 //    var isIE = /*@cc_on!@*/false;
 //    if(window.isIE){}
 
+
+
     if(!document.querySelectorAll){
         (function (d) {
             d = document, a = d.styleSheets[0] || d.createStyleSheet();
@@ -21,9 +23,11 @@
                 return c
             }
         })()
-    }                                                                                    // Si navegador no posee función querySelectorAll definir una
+    }                                                                                                                   // Si navegador no posee función querySelectorAll definir una
 
-    run = function() {                                                                                                  // Función que se ejecuta al cargar el body de una pagina
+    run = function() {
+
+                                                                                                // Función que se ejecuta al cargar el body de una pagina
         var randomFont = getElementsByClass("randomFont");
         var currentFont = choose(fonts);
 
@@ -46,7 +50,26 @@
         SetLang(lang);
 
 
-    };                                                                                                                      // Función de inicio luego de cargar el Body
+    };
+
+    runGame = function() {
+
+        var game = new Phaser.Game(900, 600, Phaser.CANVAS, '', { preload: preload, create: create });
+
+        function preload () {
+
+            game.load.image('logo', 'phaser.png');
+        }
+
+         function create () {
+
+            var logo = game.add.sprite(game.world.centerX, game.world.centerY, 'logo');
+            logo.anchor.setTo(0.5, 0.5);
+            Phaser.Canvas.addToDOM(game.canvas, "home", true);
+        }
+    };
+
+                                                                                                                            // Función de inicio luego de cargar el Body
 
     var choose = function(arr) {
             return arr[Math.floor(Math.random() * arr.length)];                                                             // Función para elegír algo al azar de una lista (de fuentes)
@@ -94,7 +117,7 @@
             // En este caso, el idioma devuelto solo conteniene el código de idioma (p.ej. "es")
         }
 
-        if ((idiomaNavegador !== 'es') || (idiomaNavegador !== 'pt') || (idiomaNavegador !== 'br') || (idiomaNavegador !== 'en'))   // si se trata de otro país configurar por default
+        if ((idiomaNavegador !== 'es') && (idiomaNavegador !== 'pt') && (idiomaNavegador !== 'br') && (idiomaNavegador !== 'en'))   // si se trata de otro país configurar por default
             idiomaNavegador = 'en';
 
 //        console.log(idiomaNavegador);
