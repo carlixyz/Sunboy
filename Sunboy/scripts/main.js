@@ -7,7 +7,7 @@
  *     <!-- saved from url=(0017)http://localhost/ -->
  */
     var fonts = ["lobster_1.4regular", 'harabararegular', 'lobster_1.4regular', 'bauhausdemi'];                             // Repetimos la fuente lobster para aumentar probabilidades
-
+    var currentFont;
 //    var isIE = /*@cc_on!@*/false;
 //    if(window.isIE){}
 
@@ -29,7 +29,8 @@
 
                                                                                                 // Función que se ejecuta al cargar el body de una pagina
         var randomFont = getElementsByClass("randomFont");
-        var currentFont = choose(fonts);
+        currentFont = choose(fonts);
+
 
 //        for(i=0; i<randomFont.length; i++){
         for( var i= 0, max = randomFont.length; i< max; i++){
@@ -51,7 +52,7 @@
 
 
     };
-                                                                                                                            // Función de inicio luego de cargar el Body
+
 
     var choose = function(arr) {
             return arr[Math.floor(Math.random() * arr.length)];                                                             // Función para elegír algo al azar de una lista (de fuentes)
