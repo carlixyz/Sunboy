@@ -18,6 +18,7 @@ var SunBoy = (function () {
 //        this.sprite = game.add.sprite(game.world.centerX, game.world.centerY , 'kid');
         this.sprite = game.add.sprite(435, 100 , 'kid');
         this.sprite.anchor.setTo(0.5, 0.5);
+
         this.sprite.body.setSize(10, 20, 10, 8);
 
 

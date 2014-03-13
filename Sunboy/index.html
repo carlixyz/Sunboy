@@ -15,8 +15,8 @@
     <script type="text/javascript" language="JavaScript" src="scripts/sunBoy.js"></script>
     <script type="text/javascript" language="JavaScript" src="scripts/sunPalms.js"></script>
     <script type="text/javascript" language="JavaScript" src="scripts/sunCloud.js"></script>
-    <!--<script type="text/javascript" language="JavaScript" src="scripts/sunCrab.js"></script>-->
-    <!--<script type="text/javascript" language="JavaScript" src="scripts/sunPelican.js"></script>-->
+    <script type="text/javascript" language="JavaScript" src="scripts/sunPelican.js"></script>
+    <script type="text/javascript" language="JavaScript" src="scripts/sunCrab.js"></script>
     <!--<script type="text/javascript" language="JavaScript" src="scripts/sunFruit.js"></script>-->
     <!--<script type="text/javascript" src="/scripts/sunGame.js"></script>-->  <!--Game Logic added inside Body -->
 
@@ -152,6 +152,8 @@
                 house = new SunHome(game);
                 palms = new SunPalms(game);
                 cloud = new SunCloud(game);
+                enemys = new SunPelican(game);
+//                enemys = new SunCrab(game);
 
                 game.load.image('mask', 'images/sunMask.png');
 
@@ -166,8 +168,9 @@
                 house.create(game, 0);
                 player.create(game, 0);
 
-                palms.create(game, 0);
-                cloud.create(game, 0);
+//                palms.create(game, 0);
+//                cloud.create(game, 0);
+                enemys.create(game, 0);
 
                 mask = game.add.sprite(game.world.centerX, game.world.centerY, 'mask');
                 mask.anchor.setTo(0.5, 0.5);
@@ -189,6 +192,7 @@
             function update()
             {
 
+                game.physics.collide(player.sprite, world.sprite);
 
                 ///////////////////////////////////////////////////////////////////
 
@@ -205,7 +209,6 @@
                         break;
 
                     case states.START:
-                            game.physics.collide(player.sprite, world.sprite);
                             scoreText.content = score = loops = time = 0;
                             scoreText.visible = alreadyPlayed;
 
@@ -272,12 +275,12 @@
                     case states.INGAME:
 
                             scoreText.content = score;
-                            game.physics.collide(player.sprite, world.sprite);
 
                             world.update(game);
                             house.update(game);
-                            palms.update(game);
-                            cloud.update(game);
+//                            palms.update(game);
+//                            cloud.update(game);
+                            enemys.update(game);
                             player.update(game);
 
                         break;
@@ -343,6 +346,7 @@
                 // Sprite debug info
 //                palms.render();
 //                cloud.render();
+                  enemys.render();
 //                world.render();
 //                player.render();
 //                game.debug.renderSpriteInfo(world, 32, 32);
