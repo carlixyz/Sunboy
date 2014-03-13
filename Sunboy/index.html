@@ -116,7 +116,7 @@
 //            var play  = false;
 //            var start = true;
 //            var end   = false;
-
+            var timeLapse = 20;
             var time = 0;
             var loops = 0;
 
@@ -164,9 +164,10 @@
 
                 world.create(game, 360);
                 house.create(game, 0);
-                palms.create(game, -7);
-                cloud.create(game, 5);
                 player.create(game, 0);
+
+                palms.create(game, 0);
+                cloud.create(game, 0);
 
                 mask = game.add.sprite(game.world.centerX, game.world.centerY, 'mask');
                 mask.anchor.setTo(0.5, 0.5);
@@ -190,76 +191,131 @@
 
 
                 ///////////////////////////////////////////////////////////////////
-                game.physics.collide(player.sprite, world.sprite);
 
                 switch ( game.currentState )
                 {
                     case states.INTRO:
-                        player.sprite.visible = false;
-                        scoreText.visible = false;
-                        infoText.visible = false;
+                            timeLapse = 0;
+                            player.sprite.visible = false;
+                            player.sprite.body.allowGravity = false;
+                            scoreText.visible = false;
+                            infoText.visible = false;
 
-                        world.GrowTween(game);
-                        game.currentState = states.START;
+//                          game.currentState = states.START; // set inside world.GrowTween(game);
                         break;
 
                     case states.START:
-
-                        if ( scoreText < topScore)
-                                scoreText = topScore;
-                            timeLapse = 20;
-                            time = 0;
-                            loops = 0;
-                            score = 0;
+                            game.physics.collide(player.sprite, world.sprite);
+                            scoreText.content = score = loops = time = 0;
                             scoreText.visible = alreadyPlayed;
 
-                            if (game.input.mousePointer.isDown || game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR) )
+
+                            if ( (game.input.mousePointer.isDown || game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR))&&
+                                    player.sprite.body.allowGravity == false)
                             {
                                 alreadyPlayed = true;
+                                player.sprite.body.allowGravity = true;
 
-                                infoText.content = "GET READY";
                                 infoText.visible = true;
+                                infoText.content = "GET READY?";
+                                infoText.alpha = 0;
 
-                                player.sprite.animations.play('idle', 1, false);
                                 player.sprite.visible = true;
+                                player.sprite.animations.play('idle', 1, false);
+
                                 player.sprite.x = 435;
                                 player.sprite.y = 250;
 
-                                game.time.events.add(Phaser.Timer.SECOND * 3, start);
+                                game.add.tween(infoText).to({ alpha: 1 }, 2000, Phaser.Easing.Elastic.InOut, true, 100, false)
+                                    .onCompleteCallback( function()
+                                    {
+                                        infoText.content = "GO!";
+                                        scoreText.visible = true;
+                                        player.sprite.animations.play('run', 7, true);
+                                        game.currentState = states.INGAME;
+
+                                        game.add.tween(infoText).to({ alpha: 0 }, 2000, Phaser.Easing.Elastic.InOut, true, 100, false)
+                                            .onCompleteCallback( function()
+                                            {
+                                                infoText.visible = false;
+                                            }
+                                        )
+                                    }
+                                );
+// Some optional code
+//                                infoText.visible = true;
+//                                infoText.content = "GET READY";
+//                                infoText.alpha = 0;
+//                                infoText.y = 400;
+//
+//                                game.add.tween(infoText).to({ alpha: 1, y: 190 }, 2000, Phaser.Easing.Elastic.Out, true, 100, false)
+//                                        .onCompleteCallback( function()
+//                                        {
+//                                            infoText.content = "GO!";
+//                                            scoreText.visible = true;
+//                                            player.sprite.animations.play('run', 7, true);
+//                                            game.currentState = states.INGAME;
+//
+//                                            game.add.tween(infoText).to({ alpha: 0, y: 0 }, 2000, Phaser.Easing.Elastic.In, true, 100, false)
+//                                                    .onCompleteCallback( function()
+//                                                    {
+//                                                        infoText.visible = false;
+//                                                    }
+//                                            )
+//                                        }
+//                                );
                             }
-                             break;
+
+
+                        break;
 
                     case states.INGAME:
+
+                            scoreText.content = score;
+                            game.physics.collide(player.sprite, world.sprite);
 
                             world.update(game);
                             house.update(game);
                             palms.update(game);
                             cloud.update(game);
                             player.update(game);
+
                         break;
                     case states.BUCLE:
+
+                        player.sprite.animations.play('idle', 1, false);
+                        infoText.visible = true;
+                        infoText.content = "LOOP " + ++loops;
+                        infoText.alpha = 0;
+
+                        game.add.tween(infoText).to({ alpha: 1 }, 2000, Phaser.Easing.Elastic.InOut, true, 100, false)
+                            .onCompleteCallback( function()
+                            {
+                                infoText.content = "GO!";
+                                scoreText.visible = true;
+                                player.sprite.animations.play('run', 7, true);
+                                game.currentState = states.INGAME;
+
+                                game.add.tween(infoText).to({ alpha: 0 }, 2000, Phaser.Easing.Elastic.InOut, true, 100, false)
+                                    .onCompleteCallback( function()
+                                    {
+                                        infoText.visible = false;
+                                    }
+                                )
+                            }
+                        );
                         break;
                     case states.GAMEOVER:
-                            timeLapse = 10;
+                        topScore = ( score > topScore ? score :  topScore) ;
+
+                        timeLapse = 10;
 
                         break;
 
                 }
             }
 
-            function start()
-            {
-                infoText.visible = true;
-                infoText.content = "GO!";
-                scoreText.visible = true;
-//                scoreText.content = "0";
 
-                player.sprite.animations.play('run', 7, true);
-//
-                game.currentState = states.INGAME;
-                game.time.events.add(Phaser.Timer.SECOND * 2, (function(){infoText.visible = false;}) );
-
-            }
             function Flick(sprite)
             {
 
@@ -286,8 +342,9 @@
 
                 // Sprite debug info
 //                palms.render();
-                world.render();
-                player.render();
+//                cloud.render();
+//                world.render();
+//                player.render();
 //                game.debug.renderSpriteInfo(world, 32, 32);
 //                game.debug.renderLocalTransformInfo(world, 32, 160);
 //                game.debug.renderWorldTransformInfo(world, 32, 290);
