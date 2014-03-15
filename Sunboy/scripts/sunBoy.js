@@ -16,11 +16,16 @@ var SunBoy = (function () {
     SunBoy.prototype.create = function (game, rotation) {
 
 //        this.sprite = game.add.sprite(game.world.centerX, game.world.centerY , 'kid');
-        this.sprite = game.add.sprite(435, 100 , 'kid');
-        this.sprite.anchor.setTo(0.5, 0.5);
+        this.sprite = game.add.sprite(425, 200 , 'kid');
 
-        this.sprite.body.setSize(10, 20, 10, 8);
+        game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
 
+
+        this.sprite.body.setSize(15, 20, -10, -10);
+//        this.sprite.anchor.setTo(0.5, 0.5);
+
+//        this.sprite.x = 430;
+//        this.sprite.y = 100;
 
 
 //        this.sprite.body.setPolygon(0,0, 10,0, 10,20, 0,20 );
@@ -42,7 +47,7 @@ var SunBoy = (function () {
         this.sprite.body.collideWorldBounds = true;
         this.sprite.body.allowGravity = true;
         this.sprite.body.immovable = false;
-        this.sprite.body.gravity.y = 12;
+        this.sprite.body.gravity.y = 300;
 
     };
 
@@ -78,7 +83,7 @@ var SunBoy = (function () {
 
             if (game.input.mousePointer.isDown )
             {
-                this.sprite.body.velocity.y = -250;
+                this.sprite.body.velocity.y = -170;
                 this.sprite.body.bounce.setTo(0, 0.35);
                 this.sprite.animations.play('jump', 1, true);
             }
@@ -107,7 +112,9 @@ var SunBoy = (function () {
     SunBoy.prototype.render = function () {
 
         // Sprite debug info
-        game.debug.renderSpriteInfo(this.sprite, 32, 32);
+       // game.debug.spriteInfo(this.sprite, 32, 32);
+        game.debug.rectangle(this.sprite.body);
+
 //        game.debug.renderPhysicsBody(this.sprite.body);
 
 //      game.debug.renderLocalTransformInfo(this.sprite, 32, 160);

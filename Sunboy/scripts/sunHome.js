@@ -15,7 +15,7 @@ var SunHome = (function () {
         this.sprite = game.add.sprite(game.world.centerX, game.world.centerY +430, 'home');
         this.sprite.anchor.setTo(0.5, 0.5);
         this.sprite.angle = rotation;
-        this.sprite.body.immovable = true;
+//        this.sprite.body.immovable = true;
 
         this.GrowTween(game);
 
