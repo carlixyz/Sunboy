@@ -23,14 +23,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="157" column="43" selection-start="5902" selection-end="5902" vertical-scroll-proportion="-9.230769" vertical-offset="1477" max-vertical-offset="5117">
+            <state line="183" column="59" selection-start="6797" selection-end="6797" vertical-scroll-proportion="0.47692308" vertical-offset="1911" max-vertical-offset="6205">
               <folding>
+                <element signature="n#style#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="tag#header#0;tag#body#0;tag#html#0" expanded="false" />
-                <element signature="e#9731#9752#0" expanded="false" />
-                <marker date="1394864979026" expanded="true" signature="4079:4084" placeholder="..." />
+                <element signature="e#10359#10380#0" expanded="false" />
+                <marker date="1394957241679" expanded="true" signature="4079:4084" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -39,7 +40,7 @@
       <file leaf-file-name="sunHome.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/sunHome.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="56" column="57" selection-start="1583" selection-end="1583" vertical-scroll-proportion="0.0" vertical-offset="952" max-vertical-offset="1173">
+            <state line="32" column="6" selection-start="996" selection-end="996" vertical-scroll-proportion="0.0" vertical-offset="342" max-vertical-offset="1190">
               <folding />
             </state>
           </provider>
@@ -48,7 +49,7 @@
       <file leaf-file-name="sunWorld.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/sunWorld.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="91" column="37" selection-start="2643" selection-end="2643" vertical-scroll-proportion="0.0" vertical-offset="903" max-vertical-offset="1819">
+            <state line="26" column="0" selection-start="786" selection-end="786" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="1819">
               <folding />
             </state>
           </provider>
@@ -57,7 +58,7 @@
       <file leaf-file-name="sunBoy.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/sunBoy.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="114" column="47" selection-start="3277" selection-end="3331" vertical-scroll-proportion="0.0" vertical-offset="801" max-vertical-offset="2227">
+            <state line="24" column="56" selection-start="651" selection-end="651" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1819">
               <folding />
             </state>
           </provider>
@@ -66,7 +67,7 @@
       <file leaf-file-name="sunPalms.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/sunPalms.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="0" selection-start="1024" selection-end="1668" vertical-scroll-proportion="0.0" vertical-offset="459" max-vertical-offset="1241">
+            <state line="16" column="0" selection-start="411" selection-end="411" vertical-scroll-proportion="0.0" vertical-offset="272" max-vertical-offset="901">
               <folding />
             </state>
           </provider>
@@ -75,16 +76,16 @@
       <file leaf-file-name="sunPelican.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/sunPelican.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="0" selection-start="1046" selection-end="1046" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1445">
+            <state line="45" column="0" selection-start="1349" selection-end="1349" vertical-scroll-proportion="0.0" vertical-offset="561" max-vertical-offset="1496">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sunCrab.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="sunCrab.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/sunCrab.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="0" selection-start="1031" selection-end="1031" vertical-scroll-proportion="0.15205725" vertical-offset="510" max-vertical-offset="1377">
+            <state line="43" column="28" selection-start="1187" selection-end="1216" vertical-scroll-proportion="0.0" vertical-offset="476" max-vertical-offset="1428">
               <folding />
             </state>
           </provider>
@@ -93,16 +94,16 @@
       <file leaf-file-name="Game.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../VectorDesigns/Phaser OKAI/Phaser OKAI/OKAÏ_files/Game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="70" column="49" selection-start="1839" selection-end="1839" vertical-scroll-proportion="0.0" vertical-offset="1190" max-vertical-offset="5236">
+            <state line="147" column="22" selection-start="4730" selection-end="4732" vertical-scroll-proportion="0.0" vertical-offset="2499" max-vertical-offset="5236">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Monster.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../VectorDesigns/Phaser OKAI/Phaser OKAI/OKAÏ_files/Monster.js">
+      <file leaf-file-name="game.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/Downloads/roms/Laser-Unicorns/LSD Laser Unicorn Flippin' Candy Adventure/src/game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="48" column="23" selection-start="1941" selection-end="1941" vertical-scroll-proportion="0.0" vertical-offset="816" max-vertical-offset="1666">
+            <state line="199" column="28" selection-start="5664" selection-end="5671" vertical-scroll-proportion="0.0" vertical-offset="3315" max-vertical-offset="5406">
               <folding />
             </state>
           </provider>
@@ -126,14 +127,14 @@
         <option value="$PROJECT_DIR$/scripts/main.js" />
         <option value="$USER_HOME$/Desktop/phaser.min.js" />
         <option value="$USER_HOME$/AppData/Local/Temp/game.js" />
-        <option value="$PROJECT_DIR$/scripts/sunHome.js" />
-        <option value="$PROJECT_DIR$/scripts/sunBoy.js" />
-        <option value="$PROJECT_DIR$/scripts/sunCloud.js" />
-        <option value="$PROJECT_DIR$/scripts/sunWorld.js" />
-        <option value="$PROJECT_DIR$/scripts/sunPalms.js" />
-        <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/scripts/sunPelican.js" />
         <option value="$PROJECT_DIR$/scripts/sunCrab.js" />
+        <option value="$PROJECT_DIR$/scripts/sunPelican.js" />
+        <option value="$PROJECT_DIR$/scripts/sunCloud.js" />
+        <option value="$PROJECT_DIR$/scripts/sunPalms.js" />
+        <option value="$PROJECT_DIR$/scripts/sunWorld.js" />
+        <option value="$PROJECT_DIR$/scripts/sunBoy.js" />
+        <option value="$PROJECT_DIR$/scripts/sunHome.js" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -169,6 +170,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -203,7 +205,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -212,14 +213,6 @@
     <property name="FullScreen" value="false" />
   </component>
   <component name="RunManager">
-    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
-      <option name="VMOptions" />
-      <option name="arguments" />
-      <option name="filePath" />
-      <option name="scope" value="ALL" />
-      <option name="testName" />
-      <method />
-    </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -228,6 +221,14 @@
       <option name="saveOutputToFile" value="false" />
       <option name="showConsoleOnStdErr" value="false" />
       <option name="showConsoleOnStdOut" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
       <method />
     </configuration>
     <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="">
@@ -307,9 +308,9 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1676602" sideWeight="0.6712095" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
@@ -328,13 +329,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../VectorDesigns/Phaser OKAI/Phaser OKAI/OKAÏ_files/Monster.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="23" selection-start="1941" selection-end="1941" vertical-scroll-proportion="0.0" vertical-offset="816" max-vertical-offset="1666">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Downloads/roms/phaser-master/phaser-master/examples/games/starstruck.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="69" column="0" selection-start="2030" selection-end="2030" vertical-scroll-proportion="-3.8857143" vertical-offset="1037" max-vertical-offset="2312" />
@@ -364,13 +358,6 @@
         <state line="37" column="60" selection-start="1955" selection-end="1956" vertical-scroll-proportion="0.0" vertical-offset="459" max-vertical-offset="4165" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../VectorDesigns/Phaser OKAI/Phaser OKAI/OKAÏ_files/Game.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="49" selection-start="1839" selection-end="1839" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5168">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/phaser.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="16" selection-start="289510" selection-end="289510" vertical-scroll-proportion="0.34249085" vertical-offset="0" max-vertical-offset="546">
@@ -378,70 +365,83 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/sunHome.js">
+    <entry file="file://$PROJECT_DIR$/../VectorDesigns/Phaser OKAI/Phaser OKAI/OKAÏ_files/Monster.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="57" selection-start="1583" selection-end="1583" vertical-scroll-proportion="0.0" vertical-offset="614" max-vertical-offset="1173">
+        <state line="64" column="32" selection-start="2388" selection-end="2389" vertical-scroll-proportion="0.3481953" vertical-offset="924" max-vertical-offset="1666" />
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/roms/Laser-Unicorns/LSD Laser Unicorn Flippin' Candy Adventure/src/game.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="199" column="28" selection-start="5664" selection-end="5671" vertical-scroll-proportion="0.0" vertical-offset="3315" max-vertical-offset="5406">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../VectorDesigns/Phaser OKAI/Phaser OKAI/OKAÏ_files/Monster.js">
+    <entry file="file://$PROJECT_DIR$/../VectorDesigns/Phaser OKAI/Phaser OKAI/OKAÏ_files/Game.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="23" selection-start="1941" selection-end="1941" vertical-scroll-proportion="0.0" vertical-offset="291" max-vertical-offset="1666">
+        <state line="147" column="22" selection-start="4730" selection-end="4732" vertical-scroll-proportion="0.0" vertical-offset="2499" max-vertical-offset="5236">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/sunPelican.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="45" column="0" selection-start="1349" selection-end="1349" vertical-scroll-proportion="0.0" vertical-offset="561" max-vertical-offset="1496">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/sunCloud.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="53" selection-start="809" selection-end="809" vertical-scroll-proportion="0.3488806" vertical-offset="255" max-vertical-offset="935">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/sunBoy.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="114" column="47" selection-start="3277" selection-end="3331" vertical-scroll-proportion="0.0" vertical-offset="1668" max-vertical-offset="2227">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/sunWorld.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="91" column="37" selection-start="2643" selection-end="2643" vertical-scroll-proportion="0.0" vertical-offset="1283" max-vertical-offset="1819">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/sunPalms.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="0" selection-start="1024" selection-end="1668" vertical-scroll-proportion="0.0" vertical-offset="459" max-vertical-offset="1241">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="157" column="43" selection-start="5902" selection-end="5902" vertical-scroll-proportion="-9.230769" vertical-offset="1477" max-vertical-offset="5117">
-          <folding>
-            <element signature="tag#header#0;tag#body#0;tag#html#0" expanded="false" />
-            <element signature="e#9731#9752#0" expanded="false" />
-            <marker date="1394864979026" expanded="true" signature="4079:4084" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/sunPelican.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="0" selection-start="1046" selection-end="1046" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1445">
+        <state line="20" column="0" selection-start="591" selection-end="591" vertical-scroll-proportion="0.5708955" vertical-offset="34" max-vertical-offset="935">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/sunCrab.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="0" selection-start="1031" selection-end="1031" vertical-scroll-proportion="0.15205725" vertical-offset="510" max-vertical-offset="1377">
+        <state line="43" column="28" selection-start="1187" selection-end="1216" vertical-scroll-proportion="0.0" vertical-offset="476" max-vertical-offset="1428">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/sunPalms.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="0" selection-start="411" selection-end="411" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="901">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/sunBoy.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="56" selection-start="651" selection-end="651" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1819">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/sunWorld.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="0" selection-start="786" selection-end="786" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="1819">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/sunHome.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="6" selection-start="996" selection-end="996" vertical-scroll-proportion="0.0" vertical-offset="342" max-vertical-offset="1190">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="183" column="59" selection-start="6797" selection-end="6797" vertical-scroll-proportion="0.47692308" vertical-offset="1911" max-vertical-offset="6205">
+          <folding>
+            <element signature="n#style#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="tag#header#0;tag#body#0;tag#html#0" expanded="false" />
+            <element signature="e#10359#10380#0" expanded="false" />
+            <marker date="1394957241679" expanded="true" signature="4079:4084" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -40,10 +40,13 @@ var SunCrab = (function () {
 
     SunCrab.prototype.update = function (game) {
 
-        if ( this.sprite.angle < 0 && this.sprite.angle > -4.5)
-            game.physics.arcade.collide(player.sprite, this.sprite );
+        if ( this.sprite.angle < 0 && this.sprite.angle > -4.5 && player.sprite.body.embedded)
+           hurtPlayer(game);
+//                console.log("cangrejo overlapped") ;
 
-//            game.physics.overlap(player.sprite, this.sprite, collisionHandler, null, this);
+//            game.physics.arcade.overlap(player.sprite, this.sprite, function(){ console.log("cangrejo overlapped");});
+//            game.physics.arcade.collide(player.sprite, this.sprite );
+
 
         if ( game.input.keyboard.isDown(Phaser.Keyboard.W) )
         {

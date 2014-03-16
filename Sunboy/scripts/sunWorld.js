@@ -16,6 +16,7 @@ var SunWorld = (function () {
     SunWorld.prototype.create = function (game, rotation) {
 
         this.sprite = game.add.sprite(game.world.centerX, game.world.centerY +430, 'world');
+//        this.sprite.smoothed = false;
 
         game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
         this.sprite.anchor.setTo(0.5, 0.5);
@@ -61,7 +62,6 @@ var SunWorld = (function () {
 
 
     SunWorld.prototype.update = function (game) {
-        game.physics.arcade.collide(player.sprite, world.sprite);
 
         this.sprite.angle -= 0.5;
 

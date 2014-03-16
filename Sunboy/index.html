@@ -123,8 +123,8 @@
 
             var score = 0;
             var topScore = 0;
-            var health = 3;
 
+            var healthText;
             var scoreText;  // Display score and topScore
             var infoText;   // Display Ready?, Loop N° & GameOver info
 
@@ -181,8 +181,11 @@
                 scoreText = game.add.text(game.world.centerX, game.world.centerY -110, "10000", style);
                 scoreText.anchor.setTo(0.5,0.5);
 
-                infoText = game.add.text(game.world.centerX + 5, game.world.centerY -50, "READY?", style);
+                infoText = game.add.text(game.world.centerX, game.world.centerY -50, "READY?", style);
                 infoText.anchor.setTo(0.5,0.5);
+
+                healthText = game.add.text(game.world.centerX, game.world.centerY -85,new Array(4 ).join("\u2665"), style);
+                healthText.anchor.setTo(0.5,0.5);
 
                 // game.world.centerY - 110 == 130
 //                game.add.tween(t).to({ y: 130 }, 5000, Phaser.Easing.Exponential.InOut, true, 100, false);
@@ -193,24 +196,27 @@
             function update()
             {
 
-                world.update(game);
+                game.physics.arcade.collide(player.sprite, world.sprite);
+
 
                 ///////////////////////////////////////////////////////////////////
 
                 switch ( game.currentState )
                 {
                     case states.INTRO:
-                            timeLapse = 0;
-                            player.sprite.visible = false;
-                            player.sprite.body.allowGravity = false;
-                            scoreText.visible = false;
-                            infoText.visible = false;
+                        timeLapse = 0;
+                        player.sprite.visible = false;
+                        player.sprite.body.allowGravity = false;
+                        scoreText.visible = false;
+                        infoText.visible = false;
+                        healthText.visible = false;
 
-//                          game.currentState = states.START; // set inside world.GrowTween(game);
+//                      game.currentState = states.START; // set inside world.GrowTween(game);
                         break;
 
                     case states.START:
-                            scoreText.content = score = loops = time = 0;
+                            scoreText.setText("0") ;
+                            score = loops = time = 0;
                             scoreText.visible = alreadyPlayed;
 
 
@@ -218,22 +224,28 @@
                                     player.sprite.body.allowGravity == false)
                             {
                                 alreadyPlayed = true;
-                                player.sprite.body.allowGravity = true;
 
                                 infoText.visible = true;
-                                infoText.content = "GET READY?";
+                                infoText.setText("GET READY?") ;
                                 infoText.alpha = 0;
+//
 
                                 player.sprite.visible = true;
+                                player.resetIt();
                                 player.sprite.animations.play('idle', 1, false);
 
-                                player.sprite.x = 435;
-                                player.sprite.y = 250;
+//                                player.sprite.x = 435;
+//                                player.sprite.y = 250;
+
+                                healthText.setText( (function (){ for (var e = ''; e.length < player.sprite.health;)e += "\u2665"; return e;})() );
+                                healthText.setText( new Array(player.sprite.health+1 ).join("\u2665") );
+                                healthText.visible = true;
 
                                 game.add.tween(infoText).to({ alpha: 1 }, 2000, Phaser.Easing.Elastic.InOut, true, 100, false)
                                     .onComplete.add( function()
                                     {
-                                        infoText.content = "GO!";
+                                        infoText.alpha = 1;
+                                        infoText.setText("GO!");
                                         scoreText.visible = true;
                                         player.sprite.animations.play('run', 7, true);
                                         game.currentState = states.INGAME;
@@ -275,8 +287,8 @@
 
                     case states.INGAME:
 
-                            scoreText.content = score;
-
+                            scoreText.setText(score);
+                            world.update(game);
                             house.update(game);
                             palms.update(game);
                             cloud.update(game);
@@ -309,21 +321,73 @@
                         );
                         break;
                     case states.GAMEOVER:
-                        topScore = ( score > topScore ? score :  topScore) ;
+//                        topScore = ( score > topScore ? score :  topScore) ;
 
-                        timeLapse = 10;
+                        if (player.flickering === false)
+                        {
+                            player.flickering = true;
+                            game.add.tween(infoText).to({ alpha: 1 }, 3000, Phaser.Easing.Elastic.InOut, true, 100, false)
+                                .onComplete.add( function()
+                                {
+                                    infoText.alpha = 1;
+                                    infoText.setText("GAME OVER");
+                                    infoText.visible = true;
 
+                                    scoreText.visible = false;
+                                    player.sprite.animations.play('idle', 7, true);
+                                    console.log("Game Over State");
+
+                                    game.add.tween(infoText).to({ alpha: 0 }, 4000, Phaser.Easing.Elastic.InOut, true, 100, false)
+                                        .onComplete.add( function()
+                                        {
+                                            infoText.visible = false;
+                                            player.sprite.visible = false;
+                                            game.currentState = states.INTRO;
+                                            player.flickering = false;
+                                            world.GrowTween(game);
+                                            game.add.tween(house.sprite).to({ angle: -house.angle }, 3000, Phaser.Easing.Exponential.Out, true, 100, false);
+//                                            house.sprite.angle = 0;
+                                            house.GrowTween(game);
+
+                                        }
+                                    )
+                                }
+                            );
+                        }
                         break;
 
                 }
             }
 
 
-            function Flick(sprite)
+            function hurtPlayer(game)
             {
+                if (player.flickering === false)
+                {
+                    player.sprite.alpha = 0;
+                    player.flickering = true;
+                    player.sprite.damage( 1);
+                    healthText.setText( (function (){ for (var e = ''; e.length < player.sprite.health;)e += "\u2665"; return e;})() );
 
+                    game.add.tween(player.sprite).to({ alpha: 1 }, 2000, Phaser.Easing.Elastic.InOut, true, 100, false)
+                        .onComplete.add( function()
+                        {
+                            player.flickering = false;
+                            console.log("player hurted");
 
+                            if (player.sprite.health <= 0)
+                            {
+                                infoText.visible = true;
+                                infoText.alpha = 0;
+                                infoText.setText("U R DEAD");
+                                game.currentState = states.GAMEOVER;
+                            }
+
+                        }
+                    );
+                }
             }
+
             function sayLoop(game)
             {
                 infoText.visible = true;
@@ -346,9 +410,9 @@
                 // Sprite debug info
 //                palms.render();
 //                cloud.render();
-                  enemys.render();
-                world.render();
-                player.render();
+//                  enemys.render();
+//                world.render();
+//                player.render();
                 //                game.debug.renderSpriteInfo(world, 32, 32);
 //                game.debug.renderLocalTransformInfo(world, 32, 160);
 //                game.debug.renderWorldTransformInfo(world, 32, 290);

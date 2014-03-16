@@ -12,7 +12,8 @@ var SunHome = (function () {
 
     SunHome.prototype.create = function (game, rotation) {
 
-        this.sprite = game.add.sprite(game.world.centerX, game.world.centerY +430, 'home');
+        this.sprite = game.add.image(game.world.centerX, game.world.centerY +430, 'home');
+
         this.sprite.anchor.setTo(0.5, 0.5);
         this.sprite.angle = rotation;
 //        this.sprite.body.immovable = true;
@@ -27,13 +28,13 @@ var SunHome = (function () {
 //        this.sprite.angle = 360;
 //        this.sprite.alpha = 0;
 
-        game.add.tween(this.sprite.scale).to({x:1, y:1, alpha: 1, angle: 0}, 2000, Phaser.Easing.Elastic.Out, true, 90, false);
+        game.add.tween(this.sprite.scale).to({x:1, y:1, angle: 0}, 2000, Phaser.Easing.Elastic.Out, true, 90, false);
 //        game.add.tween(this.sprite).to({ alpha: 1, angle: -360 }, 3000, Phaser.Easing.Exponential.Out, true, 100, false);
     };
 
     SunHome.prototype.update = function (game) {
 
-        this.sprite.angle -= 0.1;
+        this.sprite.angle -= 0.03;
 
 //        switch ( game.currentState )
 //        {

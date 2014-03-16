@@ -6,11 +6,17 @@
 var SunBoy = (function () {
     function SunBoy(game) {
         game.load.spritesheet('kid', 'images/sunKid.png', 32, 32, 4);
+        this.flickering = false;
 
         return this;
     }
 
     SunBoy.prototype.resetIt = function () {
+        player.sprite.reset(425,230) ;
+        this.flickering = false;
+        this.sprite.health = 3;
+        this.sprite.body.allowGravity = true;
+
     };
 
     SunBoy.prototype.create = function (game, rotation) {
@@ -22,14 +28,6 @@ var SunBoy = (function () {
 
 
         this.sprite.body.setSize(15, 20, -10, -10);
-//        this.sprite.anchor.setTo(0.5, 0.5);
-
-//        this.sprite.x = 430;
-//        this.sprite.y = 100;
-
-
-//        this.sprite.body.setPolygon(0,0, 10,0, 10,20, 0,20 );
-//        this.sprite.body.translate(this.sprite.center.x-5, this.sprite.center.y-10);
 
 
         //  Here we add a new animation called 'walk'
@@ -45,7 +43,7 @@ var SunBoy = (function () {
 //
 
         this.sprite.body.collideWorldBounds = true;
-        this.sprite.body.allowGravity = true;
+        this.sprite.body.allowGravity = false;
         this.sprite.body.immovable = false;
         this.sprite.body.gravity.y = 300;
 
@@ -54,28 +52,6 @@ var SunBoy = (function () {
 
 
     SunBoy.prototype.update = function (game) {
-
-
-////        if (game.input.mousePointer.isDown || game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR) )
-////            this.velY = -1.5;
-//
-//      game.input.onDown.add(function(evt)
-////        game.input.onTap.addOnce(function(evt)
-//        {
-//            player.velY = -1.5;
-//        });
-//
-//        this.sprite.y += this.velY;
-//        this.velY += 0.05;
-//
-//        if (this.sprite.y > 250)
-//            this.velY = 0;
-
-//        player.body.gravity.y = 50;
-
-//        if (game.input.mousePointer.isDown && this.sprite.body.touching.down){
-//        if (game.input.mousePointer.isDown && this.sprite.body.onFloor()){
-
 
         if (this.sprite.body.touching.down)
         {

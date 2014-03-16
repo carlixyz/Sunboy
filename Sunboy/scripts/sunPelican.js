@@ -41,8 +41,11 @@ var SunPelican = (function () {
 
     SunPelican.prototype.update = function (game) {
 
-        if ( this.sprite.angle < 3.5 && this.sprite.angle > -1)
-            game.physics.arcade.collide(player.sprite, this.sprite );
+        if ( this.sprite.angle < 3.5 && this.sprite.angle > -1 && player.sprite.body.embedded)
+            hurtPlayer(game);
+
+
+//            game.physics.arcade.collide(player.sprite, this.sprite );
 
 //            game.physics.overlap(player.sprite, this.sprite, collisionHandler, null, this);
 
