@@ -3,8 +3,10 @@
  * Created by carlos on 10/03/14.
  */
 var SunCloud = (function () {
-    function SunCloud(game) {
-        game.load.image('cloud', 'images/sunCloud.png');
+    function SunCloud(speed) {
+//        game.load.image('cloud', 'images/sunCloud.png');
+        this.angularSpeed = speed  | 0.3;
+
         return this;
     }
 
@@ -37,6 +39,7 @@ var SunCloud = (function () {
         if ( this.sprite.angle < 3 && this.sprite.angle > -5)
             game.physics.arcade.collide(player.sprite, this.sprite );
 
+        this.sprite.angle -= this.angularSpeed;
 
     };
 

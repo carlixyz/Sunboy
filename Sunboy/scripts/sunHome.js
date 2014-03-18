@@ -2,12 +2,16 @@
  * Created by carlos on 10/03/14.
  */
 var SunHome = (function () {
-    function SunHome(game) {
+    function SunHome(game, speed) {
         game.load.image('home', 'images/sunHome.png');
+        this.angularSpeed = speed || 0.25;
+
         return this;
     }
 
     SunHome.prototype.resetIt = function () {
+        game.add.tween(this.sprite).to({ angle: 0 }, 3000, Phaser.Easing.Exponential.Out, true, 100, false);
+
     };
 
     SunHome.prototype.create = function (game, rotation) {
@@ -34,7 +38,7 @@ var SunHome = (function () {
 
     SunHome.prototype.update = function (game) {
 
-        this.sprite.angle -= 0.03;
+        this.sprite.angle -= this.angularSpeed;
 
 //        switch ( game.currentState )
 //        {

@@ -2,8 +2,10 @@
  * Created by carlos on 10/03/14.
  */
 var SunWorld = (function () {
-    function SunWorld(game) {
+    function SunWorld(game, speed) {
         game.load.image('world', 'images/sunWorld.png');
+        this.angularSpeed = speed  || 0.5;
+
         return this;
     }
 
@@ -63,7 +65,7 @@ var SunWorld = (function () {
 
     SunWorld.prototype.update = function (game) {
 
-        this.sprite.angle -= 0.5;
+        this.sprite.angle -= this.angularSpeed;
 
 //        if ( game.input.keyboard.isDown(Phaser.Keyboard.W) )
 //        {

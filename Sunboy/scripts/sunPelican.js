@@ -3,9 +3,10 @@
  * Created by carlos on 10/03/14.
  */
 var SunPelican = (function () {
-    function SunPelican(game) {
+    function SunPelican(speed) {
 //        game.load.spritesheet('bird', 'images/sunPelican.png', 32, 32, 16);
-        game.load.spritesheet('bird', 'images/sunPelican.png', 32, 1024, 4);
+//        game.load.spritesheet('bird', 'images/sunPelican.png', 32, 1024, 4);
+        this.angularSpeed = 0.35 || speed;
 
         return this;
     }
@@ -26,6 +27,7 @@ var SunPelican = (function () {
 
         this.sprite.body.allowHorizontalDrag = false;
         this.sprite.body.immovable = true;
+        this.sprite.body.allowGravity = false;
 
         this.sprite.allowRotation = true;
         this.sprite.angle = rotation;
@@ -41,34 +43,36 @@ var SunPelican = (function () {
 
     SunPelican.prototype.update = function (game) {
 
-        if ( this.sprite.angle < 3.5 && this.sprite.angle > -1 && player.sprite.body.embedded)
+        if ( this.sprite.angle < 3.5 && this.sprite.angle > -1 && game.physics.arcade.overlap(player.sprite, this.sprite) )
             hurtPlayer(game);
+
+            this.sprite.angle -= this.angularSpeed;
 
 
 //            game.physics.arcade.collide(player.sprite, this.sprite );
 
 //            game.physics.overlap(player.sprite, this.sprite, collisionHandler, null, this);
 
-        if ( game.input.keyboard.isDown(Phaser.Keyboard.W) )
-        {
-            this.sprite.body.velocity.y -= 10;
-        }
-        else if ( game.input.keyboard.isDown(Phaser.Keyboard.S) )
-        {
-            this.sprite.body.velocity.y += 10;
-        }
-
-        if ( game.input.keyboard.isDown(Phaser.Keyboard.A) )
-        {
-//            this.sprite.body.velocity.x -= 10;
-            this.sprite.angle += 0.5;
-        }
-        else if ( game.input.keyboard.isDown(Phaser.Keyboard.D) )
-        {
-//            this.sprite.body.velocity.x += 10;
-            this.sprite.angle -= 0.5;
-
-        }
+//        if ( game.input.keyboard.isDown(Phaser.Keyboard.W) )
+//        {
+//            this.sprite.body.velocity.y -= 10;
+//        }
+//        else if ( game.input.keyboard.isDown(Phaser.Keyboard.S) )
+//        {
+//            this.sprite.body.velocity.y += 10;
+//        }
+//
+//        if ( game.input.keyboard.isDown(Phaser.Keyboard.A) )
+//        {
+////            this.sprite.body.velocity.x -= 10;
+//            this.sprite.angle += 0.5;
+//        }
+//        else if ( game.input.keyboard.isDown(Phaser.Keyboard.D) )
+//        {
+////            this.sprite.body.velocity.x += 10;
+//            this.sprite.angle -= 0.5;
+//
+//        }
     };
 
     SunPelican.prototype.render = function () {

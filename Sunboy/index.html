@@ -17,8 +17,11 @@
     <script type="text/javascript" language="JavaScript" src="scripts/sunCloud.js"></script>
     <script type="text/javascript" language="JavaScript" src="scripts/sunPelican.js"></script>
     <script type="text/javascript" language="JavaScript" src="scripts/sunCrab.js"></script>
+    <script type="text/javascript" language="JavaScript" src="scripts/sunCoco.js"></script>
+    <script type="text/javascript" language="JavaScript" src="scripts/sunHealth.js"></script>
+    <script type="text/javascript" language="JavaScript" src="scripts/sunApple.js"></script>
+    <script type="text/javascript" language="JavaScript" src="scripts/sunBanana.js"></script>
 
-    <!--<script type="text/javascript" language="JavaScript" src="scripts/sunFruit.js"></script>-->
     <!--<script type="text/javascript" src="/scripts/sunGame.js"></script>-->  <!--Game Logic added inside Body -->
 
 </head>
@@ -132,11 +135,12 @@
             var world;
             var house;
 
-
             var objects;
-            var items;
-            var enemys;
-            var palms;
+            var objectsIndex;
+            var monsters;
+            var monstersAmount = 3;
+
+//            var shake;
 
             var states = {  INTRO: 0, START: 1, INGAME: 2, BUCLE: 3, GAMEOVER: 4 };
 
@@ -148,16 +152,21 @@
                 Phaser.Canvas.addToDOM(game.canvas, "home", true);      // attach Phaser Canvas inside Web Content
                 game.stage.backgroundColor = '#FFFFFF';
 
-
                 player = new SunBoy(game);
                 world = new SunWorld(game);
                 house = new SunHome(game);
-                palms = new SunPalms(game);
-                cloud = new SunCloud(game);
-//                enemys = new SunPelican(game);
-                enemys = new SunCrab(game);
+
+                game.load.image('cloud', 'images/sunCloud.png');
+                game.load.image('palms', 'images/sunPalms.png');
+                game.load.image('coco', 'images/sunCoco.png');
+                game.load.image('apple', 'images/sunApple.png');
+                game.load.image('banana', 'images/sunBanana.png');
+                game.load.image('health', 'images/sunHeart.png');
+                game.load.spritesheet('crab', 'images/sunCrab.png', 32, 1024, 4);
+                game.load.spritesheet('bird', 'images/sunPelican.png', 32, 1024, 4);
 
                 game.load.image('mask', 'images/sunMask.png');
+//                shake = game.camera.fx.add(Phaser.FX.Camera.Shake);
 
             }
 
@@ -170,9 +179,9 @@
                 house.create(game, 0);
                 player.create(game, 0);
 
-                palms.create(game, 7);
-                cloud.create(game, -7);
-                enemys.create(game, 0);
+
+//                for (var i = 0, total = monsters.length-1; i < total; i++)
+//                    monsters[i].create(game, Math.random() * 360);
 
                 mask = game.add.sprite(game.world.centerX, game.world.centerY, 'mask');
                 mask.anchor.setTo(0.5, 0.5);
@@ -215,7 +224,7 @@
                         break;
 
                     case states.START:
-                            scoreText.setText("0") ;
+                            scoreText.setText(topScore) ;
                             score = loops = time = 0;
                             scoreText.visible = alreadyPlayed;
 
@@ -229,7 +238,6 @@
                                 infoText.setText("GET READY?") ;
                                 infoText.alpha = 0;
 //
-
                                 player.sprite.visible = true;
                                 player.resetIt();
                                 player.sprite.animations.play('idle', 1, false);
@@ -240,6 +248,9 @@
                                 healthText.setText( (function (){ for (var e = ''; e.length < player.sprite.health;)e += "\u2665"; return e;})() );
                                 healthText.setText( new Array(player.sprite.health+1 ).join("\u2665") );
                                 healthText.visible = true;
+
+                                scoreText.setText(score);
+
 
                                 game.add.tween(infoText).to({ alpha: 1 }, 2000, Phaser.Easing.Elastic.InOut, true, 100, false)
                                     .onComplete.add( function()
@@ -254,6 +265,8 @@
                                             .onComplete.add( function()
                                             {
                                                 infoText.visible = false;
+//                                                game.time.events.addOnce().add(Phaser.Timer.SECOND * 10, fadePicture, this);
+
                                             }
                                         )
                                     }
@@ -290,38 +303,41 @@
                             scoreText.setText(score);
                             world.update(game);
                             house.update(game);
-                            palms.update(game);
-                            cloud.update(game);
-                            enemys.update(game);
+
+//                            for (var i = 0, total = monsters.length-1; i < total; i++)
+//                                monsters[i].update(game);
+
                             player.update(game);
 
                         break;
                     case states.BUCLE:
 
-                        player.sprite.animations.play('idle', 1, false);
                         infoText.visible = true;
                         infoText.content = "LOOP " + ++loops;
                         infoText.alpha = 0;
 
-                        game.add.tween(infoText).to({ alpha: 1 }, 2000, Phaser.Easing.Elastic.InOut, true, 100, false)
-                            .onCompleteCallback( function()
-                            {
-                                infoText.content = "GO!";
-                                scoreText.visible = true;
-                                player.sprite.animations.play('run', 7, true);
-                                game.currentState = states.INGAME;
+                        game.add.tween(house.sprite).to({ angle: 0 }, 3000, Phaser.Easing.Exponential.Out, true, 100, false)
+                            .onComplete.add( function(){
 
-                                game.add.tween(infoText).to({ alpha: 0 }, 2000, Phaser.Easing.Elastic.InOut, true, 100, false)
-                                    .onCompleteCallback( function()
-                                    {
-                                        infoText.visible = false;
-                                    }
-                                )
-                            }
-                        );
+                                player.sprite.animations.play('idle', 1, false);
+//                                raiseMonsters(game);
+
+                                game.add.tween(infoText).to({ alpha: 1 }, 2000, Phaser.Easing.Elastic.InOut, true, 100, false)
+                                    .onComplete.add( function(){
+                                        infoText.content = "GO!";
+                                        scoreText.visible = true;
+                                        player.sprite.animations.play('run', 7, true);
+                                        game.currentState = states.INGAME;
+
+                                        game.add.tween(infoText).to({ alpha: 0 }, 2000, Phaser.Easing.Elastic.InOut, true, 100, false)
+                                            .onComplete.add( function(){
+                                                infoText.visible = false;
+                                            })
+                                    })
+                            });
                         break;
                     case states.GAMEOVER:
-//                        topScore = ( score > topScore ? score :  topScore) ;
+                        topScore = ( score > topScore ? score :  topScore) ;
 
                         if (player.flickering === false)
                         {
@@ -344,9 +360,9 @@
                                             player.sprite.visible = false;
                                             game.currentState = states.INTRO;
                                             player.flickering = false;
-                                            world.GrowTween(game);
-                                            game.add.tween(house.sprite).to({ angle: -house.angle }, 3000, Phaser.Easing.Exponential.Out, true, 100, false);
 //                                            house.sprite.angle = 0;
+                                            house.resetIt();
+                                            world.GrowTween(game);
                                             house.GrowTween(game);
 
                                         }
@@ -355,7 +371,6 @@
                             );
                         }
                         break;
-
                 }
             }
 
@@ -379,7 +394,7 @@
                             {
                                 infoText.visible = true;
                                 infoText.alpha = 0;
-                                infoText.setText("U R DEAD");
+                                infoText.setText("FALLASTE");
                                 game.currentState = states.GAMEOVER;
                             }
 
@@ -388,17 +403,34 @@
                 }
             }
 
-            function sayLoop(game)
+            function raiseMonsters(game)
             {
-                infoText.visible = true;
-                loops += 1;
-                infoText.content = "LOOP #" + loops;
+                monsters = [100];
+                monstersAmount = 1;
+                var sec = [2, 3, 5, 8, 13, 21, 34, 55, 89, 100]; // a small sequence to distribute better the enemy amount
+
+                for (var i = 0, total = sec[monstersAmount]; i < total; i++)
+                {
+                    monsters[i] = null;
+//                    delete monsters[i] ;
+
+                    if (Math.random() > .5)
+                        monsters[i] = new SunCrab(game);
+                    else
+                        monsters[i] = new SunPelican(game);
+
+                    monsters[i].create(game, 45 + Math.random() * 270);
+                }
+
+//                for (var i = 0, total = monsters.length-1; i < total; i++)
+                    monsters[i].create(game, Math.random() * 360);
             }
-            function sayGameOver(game)
+
+            function takeItem(itemType)
             {
-                infoText.visible = true;
-                infoText.content = "GAME OVER";
+                console.log("taken " + itemType);
             }
+
 
             function resetGame()
             {
@@ -410,7 +442,6 @@
                 // Sprite debug info
 //                palms.render();
 //                cloud.render();
-//                  enemys.render();
 //                world.render();
 //                player.render();
                 //                game.debug.renderSpriteInfo(world, 32, 32);
