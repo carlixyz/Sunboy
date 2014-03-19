@@ -12,6 +12,8 @@ var SunPelican = (function () {
     }
 
     SunPelican.prototype.resetIt = function () {
+        this.sprite.angle = 45 + Math.random() * 270;
+        this.sprite.visible = true;
     };
 
     SunPelican.prototype.create = function (game, rotation) {
@@ -46,7 +48,7 @@ var SunPelican = (function () {
         if ( this.sprite.angle < 3.5 && this.sprite.angle > -1 && game.physics.arcade.overlap(player.sprite, this.sprite) )
             hurtPlayer(game);
 
-            this.sprite.angle -= this.angularSpeed;
+            this.sprite.angle -= .3;
 
 
 //            game.physics.arcade.collide(player.sprite, this.sprite );

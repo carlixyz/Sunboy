@@ -59,7 +59,8 @@ var SunHome = (function () {
     SunHome.prototype.render = function () {
 
         // Sprite debug info
-        game.debug.renderSpriteInfo(this.sprite, 32, 32);
+        game.debug.spriteInfo(this.sprite, 32, 32);
+        game.debug.body(this.sprite);
 //      game.debug.renderLocalTransformInfo(this.sprite, 32, 160);
 //      game.debug.renderWorldTransformInfo(this.sprite, 32, 290);
     };

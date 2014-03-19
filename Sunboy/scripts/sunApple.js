@@ -15,6 +15,9 @@ var SunApple = (function () {
     }
 
     SunApple.prototype.resetIt = function () {
+        this.sprite.angle = 45 + Math.random() * 270;
+        this.sprite.visible = true;
+
     };
 
     SunApple.prototype.create = function (game, rotation) {
@@ -41,14 +44,17 @@ var SunApple = (function () {
 
     SunApple.prototype.update = function (game) {
 
-        if ( this.sprite.angle < 0 && this.sprite.angle > -4.5 && player.sprite.body.embedded)
-            takeItem("apple");
+        if ( this.sprite.angle < 0 && this.sprite.angle > -4.5 && player.sprite.body.embedded && this.sprite.visible )
+            takeItem(this);
+
 //                console.log("taken Coc!") ;
 
 //            game.physics.arcade.overlap(player.sprite, this.sprite, function(){ console.log("cangrejo overlapped");});
 //            game.physics.arcade.collide(player.sprite, this.sprite );
 
-        this.sprite.angle -= this.angularSpeed;
+//        this.sprite.angle -= this.angularSpeed;
+        this.sprite.angle -= 0.35;
+
 
     };
 

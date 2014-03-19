@@ -50,19 +50,23 @@ var SunBoy = (function () {
     };
 
 
-
     SunBoy.prototype.update = function (game) {
 
         if (this.sprite.body.touching.down)
         {
             this.sprite.animations.play('run', 7, true);
 
-            if (game.input.mousePointer.isDown )
+            if (game.input.mousePointer.isDown || game.input.mousePointer.onTap)
             {
                 this.sprite.body.velocity.y = -170;
                 this.sprite.body.bounce.setTo(0, 0.35);
                 this.sprite.animations.play('jump', 1, true);
             }
+        }
+        else if (game.input.mousePointer.isDown && this.sprite.body.velocity.y > 0)
+        {
+            this.sprite.body.velocity.y -= 4;
+            this.sprite.animations.play('jump', 1, true);
         }
 
 

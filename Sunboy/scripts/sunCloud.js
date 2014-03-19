@@ -11,6 +11,8 @@ var SunCloud = (function () {
     }
 
     SunCloud.prototype.resetIt = function () {
+        this.sprite.angle = 45 + Math.random() * 270;
+        this.sprite.visible = true;
     };
 
     SunCloud.prototype.create = function (game, rotation) {
@@ -30,16 +32,20 @@ var SunCloud = (function () {
         this.sprite.body.immovable = true;
 
         this.sprite.allowRotation = true;
-        this.sprite.angle = rotation;
         this.sprite.reset(game.world.centerX-50, game.world.centerY - 55);
 
+        this.sprite.angle = rotation;
+
+        if (Math.random() > .5)
+            this.sprite.scale.x  = -1;
     };
 
     SunCloud.prototype.update = function (game) {
         if ( this.sprite.angle < 3 && this.sprite.angle > -5)
             game.physics.arcade.collide(player.sprite, this.sprite );
 
-        this.sprite.angle -= this.angularSpeed;
+//        this.sprite.angle -= this.angularSpeed;
+        this.sprite.angle -= 0.25;
 
     };
 

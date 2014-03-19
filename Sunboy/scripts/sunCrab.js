@@ -12,6 +12,8 @@ var SunCrab = (function () {
     }
 
     SunCrab.prototype.resetIt = function () {
+        this.sprite.angle = 45 + Math.random() * 270;
+        this.sprite.visible = true;
     };
 
     SunCrab.prototype.create = function (game, rotation) {
@@ -29,11 +31,11 @@ var SunCrab = (function () {
 
         this.sprite.allowRotation = true;
 
-        this.sprite.angle = rotation;
         this.sprite.reset(game.world.centerX-25, game.world.centerY +5);
 
         this.sprite.animations.add('fly', [0, 1, 2, 3], 10, true);
         this.sprite.animations.play('fly');
+        this.sprite.angle = rotation;
 
 
     };
@@ -46,7 +48,8 @@ var SunCrab = (function () {
            hurtPlayer(game);
 //                console.log("cangrejo overlapped") ;
 
-        this.sprite.angle -= this.angularSpeed;
+//        this.sprite.angle -= this.angularSpeed;
+        this.sprite.angle -= .35;
 
 
 

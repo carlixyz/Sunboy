@@ -107,7 +107,7 @@
         <script type="text/javascript" language="JavaScript" >
 
             /* MAIN GAME SCRIPT SOURCE
-            *
+            *   all main source it's done here for better access
             *
             *
             *
@@ -117,30 +117,23 @@
             var game = new Phaser.Game(900, 480, Phaser.CANVAS, '', { preload: preload, create: create, update : update, render : render });
 
             var alreadyPlayed = false;
-//            var play  = false;
-//            var start = true;
-//            var end   = false;
-            var timeLapse = 20;
-            var time = 0;
-            var loops = 0;
 
-            var score = 0;
-            var topScore = 0;
+            var loops       = 1;                                       // number of loops to use as: sec[loops]
+            var sec         = [2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 200];   // fibonacci: a small sequence to distribute better the enemy amount
+
+            var score       = 0;
+            var topScore    = 0;
 
             var healthText;
-            var scoreText;  // Display score and topScore
-            var infoText;   // Display Ready?, Loop N° & GameOver info
+            var scoreText;                                              // Display score and topScore
+            var infoText;                                               // Display Ready?, Loop N° & GameOver info
 
             var player ;
             var world;
             var house;
 
             var objects;
-            var objectsIndex;
-            var monsters;
-            var monstersAmount = 3;
-
-//            var shake;
+            var objectsAmount;
 
             var states = {  INTRO: 0, START: 1, INGAME: 2, BUCLE: 3, GAMEOVER: 4 };
 
@@ -168,6 +161,7 @@
                 game.load.image('mask', 'images/sunMask.png');
 //                shake = game.camera.fx.add(Phaser.FX.Camera.Shake);
 
+
             }
 
             function create ()
@@ -180,8 +174,7 @@
                 player.create(game, 0);
 
 
-//                for (var i = 0, total = monsters.length-1; i < total; i++)
-//                    monsters[i].create(game, Math.random() * 360);
+                shuffleObjects(game);
 
                 mask = game.add.sprite(game.world.centerX, game.world.centerY, 'mask');
                 mask.anchor.setTo(0.5, 0.5);
@@ -196,8 +189,6 @@
                 healthText = game.add.text(game.world.centerX, game.world.centerY -85,new Array(4 ).join("\u2665"), style);
                 healthText.anchor.setTo(0.5,0.5);
 
-                // game.world.centerY - 110 == 130
-//                game.add.tween(t).to({ y: 130 }, 5000, Phaser.Easing.Exponential.InOut, true, 100, false);
 
             }
 
@@ -207,25 +198,22 @@
 
                 game.physics.arcade.collide(player.sprite, world.sprite);
 
-
                 ///////////////////////////////////////////////////////////////////
 
                 switch ( game.currentState )
                 {
                     case states.INTRO:
-                        timeLapse = 0;
                         player.sprite.visible = false;
                         player.sprite.body.allowGravity = false;
                         scoreText.visible = false;
                         infoText.visible = false;
                         healthText.visible = false;
 
-//                      game.currentState = states.START; // set inside world.GrowTween(game);
+//                      game.currentState = states.START;                       // set inside world.GrowTween(game);
                         break;
 
                     case states.START:
                             scoreText.setText(topScore) ;
-                            score = loops = time = 0;
                             scoreText.visible = alreadyPlayed;
 
 
@@ -242,15 +230,11 @@
                                 player.resetIt();
                                 player.sprite.animations.play('idle', 1, false);
 
-//                                player.sprite.x = 435;
-//                                player.sprite.y = 250;
-
                                 healthText.setText( (function (){ for (var e = ''; e.length < player.sprite.health;)e += "\u2665"; return e;})() );
                                 healthText.setText( new Array(player.sprite.health+1 ).join("\u2665") );
                                 healthText.visible = true;
 
                                 scoreText.setText(score);
-
 
                                 game.add.tween(infoText).to({ alpha: 1 }, 2000, Phaser.Easing.Elastic.InOut, true, 100, false)
                                     .onComplete.add( function()
@@ -259,14 +243,13 @@
                                         infoText.setText("GO!");
                                         scoreText.visible = true;
                                         player.sprite.animations.play('run', 7, true);
+                                        house.sprite.angle = -.01;
                                         game.currentState = states.INGAME;
 
                                         game.add.tween(infoText).to({ alpha: 0 }, 2000, Phaser.Easing.Elastic.InOut, true, 100, false)
                                             .onComplete.add( function()
                                             {
                                                 infoText.visible = false;
-//                                                game.time.events.addOnce().add(Phaser.Timer.SECOND * 10, fadePicture, this);
-
                                             }
                                         )
                                     }
@@ -302,39 +285,56 @@
 
                             scoreText.setText(score);
                             world.update(game);
-                            house.update(game);
 
-//                            for (var i = 0, total = monsters.length-1; i < total; i++)
-//                                monsters[i].update(game);
+                            for ( var i = 0; i < objectsAmount; i++)
+                                objects[i].update(game);
 
                             player.update(game);
+                            house.update(game);
+                        if (house.sprite.rotation > 0 &&  house.sprite.rotation < .075)
+                                game.currentState = states.BUCLE;
 
                         break;
                     case states.BUCLE:
 
-                        infoText.visible = true;
-                        infoText.content = "LOOP " + ++loops;
-                        infoText.alpha = 0;
 
-                        game.add.tween(house.sprite).to({ angle: 0 }, 3000, Phaser.Easing.Exponential.Out, true, 100, false)
-                            .onComplete.add( function(){
+                        if (player.flickering === false)
+                        {
+                            for ( var j = 0; j < objectsAmount; j++)
+                                objects[j].sprite.visible = false;
 
-                                player.sprite.animations.play('idle', 1, false);
-//                                raiseMonsters(game);
+                            player.sprite.animations.play('run', 3, true);
+                            player.flickering = true;
+                            infoText.visible = true;
+                            infoText.setText( "LOOP " + loops);
+                            infoText.alpha = 1;
 
-                                game.add.tween(infoText).to({ alpha: 1 }, 2000, Phaser.Easing.Elastic.InOut, true, 100, false)
-                                    .onComplete.add( function(){
-                                        infoText.content = "GO!";
-                                        scoreText.visible = true;
-                                        player.sprite.animations.play('run', 7, true);
-                                        game.currentState = states.INGAME;
+                            game.add.tween(house.sprite).to({ angle: 0 }, 3000, Phaser.Easing.Exponential.Out, true, 100, false)
+                                .onComplete.add( function(){
 
-                                        game.add.tween(infoText).to({ alpha: 0 }, 2000, Phaser.Easing.Elastic.InOut, true, 100, false)
-                                            .onComplete.add( function(){
-                                                infoText.visible = false;
-                                            })
-                                    })
-                            });
+                                    player.sprite.animations.play('idle', 1, false);
+                                    reShuffleLoop();
+
+                                    game.add.tween(infoText).to({ alpha: 1 }, 2000, Phaser.Easing.Elastic.InOut, true, 100, false)
+                                        .onComplete.add( function(){
+                                            infoText.setText( "GO!");
+                                            scoreText.visible = true;
+                                            player.sprite.animations.play('run', 7, true);
+                                            player.sprite.alpha = 1;
+                                            player.sprite.visible = true;
+                                            house.sprite.angle = -.01;
+                                            game.currentState = states.INGAME;
+
+                                            game.add.tween(infoText).to({ alpha: 0 }, 2000, Phaser.Easing.Elastic.InOut, true, 100, false)
+                                                .onComplete.add( function(){
+                                                    infoText.visible = false;
+                                                    player.flickering = false;
+
+                                                    })
+                                        })
+                                });
+                            }
+
                         break;
                     case states.GAMEOVER:
                         topScore = ( score > topScore ? score :  topScore) ;
@@ -351,19 +351,18 @@
 
                                     scoreText.visible = false;
                                     player.sprite.animations.play('idle', 7, true);
-                                    console.log("Game Over State");
 
                                     game.add.tween(infoText).to({ alpha: 0 }, 4000, Phaser.Easing.Elastic.InOut, true, 100, false)
                                         .onComplete.add( function()
                                         {
                                             infoText.visible = false;
                                             player.sprite.visible = false;
-                                            game.currentState = states.INTRO;
                                             player.flickering = false;
 //                                            house.sprite.angle = 0;
                                             house.resetIt();
                                             world.GrowTween(game);
                                             house.GrowTween(game);
+                                            resetGame(game);
 
                                         }
                                     )
@@ -394,7 +393,7 @@
                             {
                                 infoText.visible = true;
                                 infoText.alpha = 0;
-                                infoText.setText("FALLASTE");
+                                infoText.setText("HEALTH EMPTY");
                                 game.currentState = states.GAMEOVER;
                             }
 
@@ -403,45 +402,126 @@
                 }
             }
 
-            function raiseMonsters(game)
+            function takeItem(item)
             {
-                monsters = [100];
-                monstersAmount = 1;
-                var sec = [2, 3, 5, 8, 13, 21, 34, 55, 89, 100]; // a small sequence to distribute better the enemy amount
+//                console.log("taken " + itemType.constructor.name);
 
-                for (var i = 0, total = sec[monstersAmount]; i < total; i++)
+                item.sprite.visible = false;
+
+                switch(item.constructor.name)
                 {
-                    monsters[i] = null;
-//                    delete monsters[i] ;
+                    case 'SunHealth':
 
-                    if (Math.random() > .5)
-                        monsters[i] = new SunCrab(game);
-                    else
-                        monsters[i] = new SunPelican(game);
+                        player.sprite.health = Math.min(Math.max(++player.sprite.health, 0), 3);
+                        healthText.setText( (function (){ for (var e = ''; e.length < player.sprite.health;)e += "\u2665"; return e;})() );
+                        player.sprite.alpha = 1;
+                        player.sprite.visible = true;
+                        break;
+                    case 'SunCoco':
+                        score += 100;
+                        break;
+                    case 'SunApple':
+                        score += 500;
 
-                    monsters[i].create(game, 45 + Math.random() * 270);
+                        break;
+                    case 'SunBanana':
+                        score += 50;
+
+                        break;
+                }
+            }
+
+            function shuffleObjects(game)
+            {
+                loops = 1;                                           // a temporary var to pick up numbers in the fibonacci
+
+                objects = [sec.length-1];                               // objects list (144 things inside)
+                objectsAmount = sec[sec.length-1];                      // the total amount of objects shuffled in  nice proportions (144)
+
+                for (var i = 0 ; i < objectsAmount; i++)
+                {
+                    switch(Math.round(Math.random() * 14))
+                    {
+                        case 0:
+                        case 1:
+                        case 2:
+                            objects[i] = new SunCrab(game);     // Cangrejo
+                            break;
+
+                        case 3:
+                        case 4:
+                        case 5:
+                            objects[i] = new SunPelican(game);  // Pelicano
+                            break;
+
+                        case 6:
+                        case 7:
+                            objects[i] = new SunPalms(game);    // palmera
+                            break;
+
+                        case 8:
+                        case 9:
+                            objects[i] = new SunCloud(game);    // nube
+                            break;
+
+                        case 10:
+                            objects[i] = new SunApple(game);    // manzana
+                            break;
+                        case 11:
+                            objects[i] = new SunBanana(game);   // chola
+                            break;
+                        case 12:
+                            objects[i] = new SunHealth(game);   // energía
+                            break;
+                        default:
+                            objects[i] = new SunCoco(game);     // coco
+                    }
+                    objects[i].create(game, 45 + Math.random() * 270);
                 }
 
-//                for (var i = 0, total = monsters.length-1; i < total; i++)
-                    monsters[i].create(game, Math.random() * 360);
+                objectsAmount = sec[loops];              // setting up the amount of objects to update ( 3 at start)
             }
 
-            function takeItem(itemType)
+            function reShuffleLoop()
             {
-                console.log("taken " + itemType);
+                loops = Math.min(Math.max(++loops, 0), 10);
+                objectsAmount = sec[loops];
+
+                for (var i = 0 ; i < objectsAmount; i++)
+                {
+                    objects[i].resetIt();
+                }
             }
 
-
-            function resetGame()
+            function resetGame(game)
             {
+                for (var i = 0 ; i < 144; i++)
+                {
+                    objects[i].sprite.body = null;
+                    objects[i].sprite.destroy();
+                    objects[i] = null;
+                }
 
+                shuffleObjects(game);
+
+                loops = 1;
+                objectsAmount = sec[loops];
+                score = 0;
+                loops = 1;
+                game.currentState = states.INTRO;
+
+                mask.destroy();
+                mask = null;
+
+                mask = game.add.sprite(game.world.centerX, game.world.centerY, 'mask');
+                mask.anchor.setTo(0.5, 0.5);
             }
 
             function render() {
 
                 // Sprite debug info
 //                palms.render();
-//                cloud.render();
+//                house.render();
 //                world.render();
 //                player.render();
                 //                game.debug.renderSpriteInfo(world, 32, 32);

@@ -13,6 +13,9 @@ var SunHealth = (function () {
     }
 
     SunHealth.prototype.resetIt = function () {
+        this.sprite.angle = 45 + Math.random() * 270;
+        this.sprite.visible = true;
+
     };
 
     SunHealth.prototype.create = function (game, rotation) {
@@ -39,14 +42,15 @@ var SunHealth = (function () {
 
     SunHealth.prototype.update = function (game) {
 
-        if ( this.sprite.angle < 0 && this.sprite.angle > -4.5 && player.sprite.body.embedded)
-            takeItem("health");
+        if ( this.sprite.angle < 0 && this.sprite.angle > -4.5 && player.sprite.body.embedded && this.sprite.visible )
+            takeItem(this);
 //                console.log("taken Coc!") ;
 
 //            game.physics.arcade.overlap(player.sprite, this.sprite, function(){ console.log("cangrejo overlapped");});
 //            game.physics.arcade.collide(player.sprite, this.sprite );
 
-        this.sprite.angle -= this.angularSpeed;
+//        this.sprite.angle -= this.angularSpeed;
+        this.sprite.angle -= 0.45;
 
 //        if ( game.input.keyboard.isDown(Phaser.Keyboard.W) )
 //        {
