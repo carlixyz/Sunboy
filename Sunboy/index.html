@@ -109,29 +109,27 @@
             /* MAIN GAME SCRIPT SOURCE
             *   all main source it's done here for better access
             *
-            *
-            *
-            *
             */
 
             var game = new Phaser.Game(900, 480, Phaser.CANVAS, '', { preload: preload, create: create, update : update, render : render });
 
             var alreadyPlayed = false;
-
-            var loops       = 1;                                       // number of loops to use as: sec[loops]
+            var loops       = 1;                                            // number of loops to use as: sec[loops]
             var sec         = [2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 200];   // fibonacci: a small sequence to distribute better the enemy amount
-
             var score       = 0;
             var topScore    = 0;
 
-            var healthText;
-            var scoreText;                                              // Display score and topScore
-            var infoText;                                               // Display Ready?, Loop N° & GameOver info
+            var healthText;                                                 // show energy amount
+            var scoreText;                                                  // Display score and topScore
+            var infoText;                                                   // Display Ready?, Loop N° & GameOver info
+            var titleText;                                                  // Display SunHouse
+            var subTitleText;                                               // Display Game Development
+            var mask;                                                       // Hide everything inside a little hole world
+            var guiGroup;                                                   // container for all previous things
 
             var player ;
             var world;
             var house;
-
             var objects;
             var objectsAmount;
 
@@ -176,20 +174,47 @@
 
                 shuffleObjects(game);
 
-                mask = game.add.sprite(game.world.centerX, game.world.centerY, 'mask');
+                guiGroup = game.add.group();
+
+                mask = game.add.image(game.world.centerX, game.world.centerY, 'mask');
                 mask.anchor.setTo(0.5, 0.5);
+                guiGroup.add(mask);
 
                 var style = { font: "12px MyriadPro-Regular", fill: "white", align: "center" };
                 scoreText = game.add.text(game.world.centerX, game.world.centerY -110, "10000", style);
                 scoreText.anchor.setTo(0.5,0.5);
+                guiGroup.add(scoreText);
 
                 infoText = game.add.text(game.world.centerX, game.world.centerY -50, "READY?", style);
                 infoText.anchor.setTo(0.5,0.5);
+                guiGroup.add(infoText);
 
                 healthText = game.add.text(game.world.centerX, game.world.centerY -85,new Array(4 ).join("\u2665"), style);
                 healthText.anchor.setTo(0.5,0.5);
+                guiGroup.add(healthText);
 
+//                var randomStyle =  { font: "lobster_1.4regular", fill: "black", align: "center" };
+                titleText = game.add.text(game.world.centerX + 280, game.world.centerY, "SunHouse"); // ®
+                titleText.font = currentFont;
+                titleText.fontSize = 64;
+                titleText.fill = "#131313";
+                titleText.align = "center";
+                titleText.anchor.setTo(0.5,0.5);
+                guiGroup.add(titleText);
 
+                subTitleText = game.add.text(game.world.centerX + 280, game.world.centerY + 40, "Game Development"); // ®
+                subTitleText.font = currentFont;
+                subTitleText.fontSize = 16;
+                subTitleText.fill = "#131313";
+                subTitleText.align = "center";
+                subTitleText.anchor.setTo(0.5,0.5);
+                guiGroup.add(subTitleText);
+
+                subTitleText.scale.y  = -0.1;
+                titleText.scale.y = -0.1;
+
+                game.add.tween(titleText.scale).to({ y:1}, 3500, Phaser.Easing.Elastic.Out, true, 100, false);
+                game.add.tween(subTitleText.scale).to({ y:1}, 3600, Phaser.Easing.Elastic.Out, true, 100, false);
             }
 
 
@@ -387,16 +412,15 @@
                         .onComplete.add( function()
                         {
                             player.flickering = false;
-                            console.log("player hurted");
+//                            console.log("SEGUÍ PARTICIPANDO");
 
                             if (player.sprite.health <= 0)
                             {
                                 infoText.visible = true;
                                 infoText.alpha = 0;
-                                infoText.setText("HEALTH EMPTY");
+                                infoText.setText("SEGUÍ PARTICIPANDO");
                                 game.currentState = states.GAMEOVER;
                             }
-
                         }
                     );
                 }
@@ -440,7 +464,8 @@
 
                 for (var i = 0 ; i < objectsAmount; i++)
                 {
-                    switch(Math.round(Math.random() * 14))
+//                    switch(Math.round(Math.random() * 14))
+                    switch(game.rnd.integerInRange(0, 14))
                     {
                         case 0:
                         case 1:
@@ -504,17 +529,21 @@
 
                 shuffleObjects(game);
 
+
                 loops = 1;
                 objectsAmount = sec[loops];
                 score = 0;
                 loops = 1;
                 game.currentState = states.INTRO;
 
-                mask.destroy();
-                mask = null;
+//                mask.destroy();
+//                mask = null;
+//                mask = game.add.sprite(game.world.centerX, game.world.centerY, 'mask');
+//                mask.anchor.setTo(0.5, 0.5);
+//                mask.bringToTop();
 
-                mask = game.add.sprite(game.world.centerX, game.world.centerY, 'mask');
-                mask.anchor.setTo(0.5, 0.5);
+                game.world.bringToTop(guiGroup);
+
             }
 
             function render() {

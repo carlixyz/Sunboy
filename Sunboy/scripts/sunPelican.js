@@ -12,7 +12,8 @@ var SunPelican = (function () {
     }
 
     SunPelican.prototype.resetIt = function () {
-        this.sprite.angle = 45 + Math.random() * 270;
+        this.sprite.angle = game.rnd.integerInRange(45, 270);
+
         this.sprite.visible = true;
     };
 

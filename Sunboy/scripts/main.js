@@ -6,7 +6,7 @@
  * Include function code from: http://www.anyexample.com/webdev/javascript/javascript_getelementsbyclass_function.xml
  *     <!-- saved from url=(0017)http://localhost/ -->
  */
-    var fonts = ["lobster_1.4regular", 'harabararegular', 'lobster_1.4regular', 'bauhausdemi'];                             // Repetimos la fuente lobster para aumentar probabilidades
+    var fonts = ["lobster_1.4regular", 'harabararegular', 'bauhausdemi'];                             // Repetimos la fuente lobster para aumentar probabilidades
     var currentFont;
 //    var isIE = /*@cc_on!@*/false;
 //    if(window.isIE){}
