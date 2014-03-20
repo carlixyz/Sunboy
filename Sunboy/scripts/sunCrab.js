@@ -44,7 +44,7 @@ var SunCrab = (function () {
 
     SunCrab.prototype.update = function (game) {
 
-        if ( this.sprite.angle < 0 && this.sprite.angle > -4.5 && player.sprite.body.embedded)
+        if ( this.sprite.angle < 0 && this.sprite.angle > -4.5 && player.sprite.body.embedded && player.sprite.y > 200)
            hurtPlayer(game);
 //                console.log("cangrejo overlapped") ;
 

@@ -56,11 +56,12 @@ var SunBoy = (function () {
         {
             this.sprite.animations.play('run', 7, true);
 
-            if (game.input.mousePointer.isDown || game.input.mousePointer.onTap)
+            if (game.input.mousePointer.isDown || game.input.mousePointer.onTap || game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR))
             {
                 this.sprite.body.velocity.y = -170;
                 this.sprite.body.bounce.setTo(0, 0.35);
                 this.sprite.animations.play('jump', 1, true);
+                audioJump.play();
             }
         }
         else if (game.input.mousePointer.isDown && this.sprite.body.velocity.y > 0)
@@ -92,7 +93,7 @@ var SunBoy = (function () {
     SunBoy.prototype.render = function () {
 
         // Sprite debug info
-       // game.debug.spriteInfo(this.sprite, 32, 32);
+       game.debug.spriteInfo(this.sprite, 32, 32);
         game.debug.rectangle(this.sprite.body);
 
 //        game.debug.renderPhysicsBody(this.sprite.body);
