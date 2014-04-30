@@ -21,19 +21,23 @@ var SunHealth = (function () {
 
     SunHealth.prototype.create = function (game, rotation) {
 
-        this.sprite = game.add.sprite(game.world.centerX, game.world.centerY + 430 , 'health');
+
+        this.sprite = game.add.sprite(game.world.centerX, game.world.centerY + 430 , 'sprites');
 
         game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
-        this.sprite.body.setSize(64, 64, +25, 425);
+        this.sprite.body.setSize(64, 64,  -32, +420);
 
-        this.sprite.anchor.setTo(0.5, 0.5);
+        this.sprite.animations.add('heart', [0], 1, false);
+        this.sprite.animations.play('heart', 1, false);
+
+        this.sprite.anchor.setTo(0.5, 13.55);
 
         this.sprite.body.allowHorizontalDrag = false;
         this.sprite.body.immovable = true;
 
         this.sprite.allowRotation = true;
         this.sprite.angle = rotation;
-        this.sprite.reset(game.world.centerX-25, game.world.centerY +5);
+//        this.sprite.reset(game.world.centerX-25, game.world.centerY +5);
 
 
 
@@ -43,7 +47,10 @@ var SunHealth = (function () {
 
     SunHealth.prototype.update = function (game) {
 
-        if ( this.sprite.angle < 0 && this.sprite.angle > -4.5 && player.sprite.body.embedded && this.sprite.visible )
+//        game.physics.arcade.overlap(player.sprite, this.sprite, function(){ console.log("health overlapped");});
+
+//        if ( this.sprite.angle < 0 && this.sprite.angle > -4.5 && player.sprite.body.embedded && this.sprite.visible )
+        if ( this.sprite.angle < 0 && this.sprite.angle > -4.5 &&  game.physics.arcade.overlap(player.sprite, this.sprite) && this.sprite.visible )
             takeItem(this);
 //                console.log("taken Coc!") ;
 

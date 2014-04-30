@@ -18,24 +18,42 @@ var SunCrab = (function () {
 
     SunCrab.prototype.create = function (game, rotation) {
 
-        this.sprite = game.add.sprite(game.world.centerX, game.world.centerY + 430 , 'crab');
+        this.sprite = game.add.sprite(game.world.centerX, game.world.centerY + 430 , 'sprites');
 
         game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
-        this.sprite.body.setSize(64, 64, +25, 425);
+        this.sprite.body.setSize(16, 32,  -16, +16);
 
-        this.sprite.anchor.setTo(0.5, 0.5);
+        this.sprite.animations.add('crab', [8, 9, 10, 11], 10, true);
+        this.sprite.animations.play('crab', 10, true);
+
+        this.sprite.anchor.setTo(0.5, 13.75);
 
         this.sprite.body.allowHorizontalDrag = false;
         this.sprite.body.immovable = true;
-        this.sprite.body.allowGravity = false;
 
         this.sprite.allowRotation = true;
-
-        this.sprite.reset(game.world.centerX-25, game.world.centerY +5);
-
-        this.sprite.animations.add('fly', [0, 1, 2, 3], 10, true);
-        this.sprite.animations.play('fly');
         this.sprite.angle = rotation;
+
+
+
+//        this.sprite = game.add.sprite(game.world.centerX, game.world.centerY + 430 , 'crab');
+//
+//        game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
+//        this.sprite.body.setSize(64, 64, +25, 425);
+//
+//        this.sprite.anchor.setTo(0.5, 0.5);
+//
+//        this.sprite.body.allowHorizontalDrag = false;
+//        this.sprite.body.immovable = true;
+//        this.sprite.body.allowGravity = false;
+//
+//        this.sprite.allowRotation = true;
+//
+////        this.sprite.reset(game.world.centerX-25, game.world.centerY +5);
+//
+//        this.sprite.animations.add('fly', [0, 1, 2, 3], 10, true);
+//        this.sprite.animations.play('fly');
+//        this.sprite.angle = rotation;
 
 
     };
@@ -44,7 +62,8 @@ var SunCrab = (function () {
 
     SunCrab.prototype.update = function (game) {
 
-        if ( this.sprite.angle < 0 && this.sprite.angle > -4.5 && player.sprite.body.embedded && player.sprite.y > 200)
+//        if ( this.sprite.angle < 0 && this.sprite.angle > -4.5 && player.sprite.body.embedded && player.sprite.y > 200)
+        if ( this.sprite.angle < 0 && this.sprite.angle > -4.5 &&  game.physics.arcade.overlap(player.sprite, this.sprite) && player.sprite.y > 200 )
            hurtPlayer(game);
 //                console.log("cangrejo overlapped") ;
 

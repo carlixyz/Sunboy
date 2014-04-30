@@ -25,21 +25,15 @@ var SunWorld = (function () {
 
         this.sprite.body.allowGravity = false;
         this.sprite.body.immovable = true;
-        this.sprite.body.setSize(100 , 200, 50, 405);
-
-
+        this.sprite.body.setSize(100 , 500, 0, -160);
 
 //        this.sprite.pivot.setTo(548, 548);
         this.sprite.allowRotation = true;
         this.sprite.angle = rotation;
 
-        this.sprite.reset(game.world.centerX-50, game.world.centerY + 25);
+//        this.sprite.reset(game.world.centerX, game.world.centerY + 430);
 
         this.GrowTween(game);
-
-
-
-//        this.sprite.body.setSize(600 , 600, this.sprite.width - 300, this.sprite.height);
 
 
     };
@@ -67,23 +61,6 @@ var SunWorld = (function () {
 
         this.sprite.angle -= this.angularSpeed;
 
-//        if ( game.input.keyboard.isDown(Phaser.Keyboard.W) )
-//        {
-//            this.sprite.body.velocity.y -= 10;
-//        }
-//        else if ( game.input.keyboard.isDown(Phaser.Keyboard.S) )
-//        {
-//            this.sprite.body.velocity.y += 10;
-//        }
-//
-//        if ( game.input.keyboard.isDown(Phaser.Keyboard.A) )
-//        {
-//            this.sprite.body.velocity.x -= 10;
-//        }
-//        else if ( game.input.keyboard.isDown(Phaser.Keyboard.D) )
-//        {
-//            this.sprite.body.velocity.x += 10;
-//        }
     };
 
     SunWorld.prototype.render = function () {
@@ -92,6 +69,7 @@ var SunWorld = (function () {
 //        game.debug.spriteInfo(this.sprite, 32, 32);
 //        game.debug.rectangle(this.sprite);
         game.debug.body(this.sprite);
+
 //        game.debug.geom()
 //        game.debug.renderPhysicsBody(this.sprite.body);
 

@@ -24,16 +24,12 @@ var SunCloud = (function () {
 //        this.sprite.body.immovable = true;
 
         game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
-        this.sprite.body.setSize(100, 200, 50, 480);
+        this.sprite.body.setSize(64, 64,  -16, +520);
 
-        this.sprite.anchor.setTo(0.5, 0.5);
-
+        this.sprite.anchor.setTo(0.5, 15.5);
         this.sprite.body.allowHorizontalDrag = false;
         this.sprite.body.immovable = true;
-
         this.sprite.allowRotation = true;
-        this.sprite.reset(game.world.centerX-50, game.world.centerY - 55);
-
         this.sprite.angle = rotation;
 
         if (Math.random() > .5)
@@ -46,6 +42,28 @@ var SunCloud = (function () {
 
 //        this.sprite.angle -= this.angularSpeed;
         this.sprite.angle -= 0.25;
+
+
+//        if ( game.input.keyboard.isDown(Phaser.Keyboard.W) )
+//        {
+//            this.sprite.body.velocity.y -= 10;
+//        }
+//        else if ( game.input.keyboard.isDown(Phaser.Keyboard.S) )
+//        {
+//            this.sprite.body.velocity.y += 10;
+//        }
+//
+//        if ( game.input.keyboard.isDown(Phaser.Keyboard.A) )
+//        {
+////            this.sprite.body.velocity.x -= 10;
+//            this.sprite.angle += 0.5;
+//        }
+//        else if ( game.input.keyboard.isDown(Phaser.Keyboard.D) )
+//        {
+////            this.sprite.body.velocity.x += 10;
+//            this.sprite.angle -= 0.5;
+//
+//        }
 
     };
 

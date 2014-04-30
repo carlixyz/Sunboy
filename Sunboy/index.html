@@ -22,6 +22,7 @@
     <script type="text/javascript" language="JavaScript" src="scripts/sunApple.js"></script>
     <script type="text/javascript" language="JavaScript" src="scripts/sunBanana.js"></script>
 
+
     <!--<script type="text/javascript" src="/scripts/sunGame.js"></script>-->  <!--Game Logic added inside Body -->
 
 </head>
@@ -133,17 +134,17 @@
             var objects;
             var objectsAmount;
 
-            var audioSea;
             var audioBase;
-            var audioDing;
             var audioJump;
             var audioHurt;
             var audioItem;
-            var audioDrum1;
-            var audioDrum2;
-            var audioDrum3;
-
             var states = {  INTRO: 0, START: 1, INGAME: 2, BUCLE: 3, GAMEOVER: 4 };
+
+            //            var audioSea;
+            //            var audioDing;
+            //            var audioDrum1;
+            //            var audioDrum2;
+            //            var audioDrum3;
 
             function preload ()
             {
@@ -157,27 +158,16 @@
                 world = new SunWorld(game);
                 house = new SunHome(game);
 
+                game.load.spritesheet('sprites', 'images/sunSpriteSheet.png', 32, 32);
                 game.load.image('cloud', 'images/sunCloud.png');
                 game.load.image('palms', 'images/sunPalms.png');
-                game.load.image('coco', 'images/sunCoco.png');
-                game.load.image('apple', 'images/sunApple.png');
-                game.load.image('banana', 'images/sunBanana.png');
-                game.load.image('health', 'images/sunHeart.png');
-                game.load.spritesheet('crab', 'images/sunCrab.png', 32, 1024, 4);
-                game.load.spritesheet('bird', 'images/sunPelican.png', 32, 1024, 4);
-
                 game.load.image('mask', 'images/sunMask.png');
-//                shake = game.camera.fx.add(Phaser.FX.Camera.Shake);
 
-                game.load.audio('beach', 'audio/soundscape - beach with gulls.ogg' );
-                game.load.audio('ding', 'audio/BellsHappy.ogg' );
-                game.load.audio('chiptune', 'audio/chiptune funky beat 2.ogg' );
-                game.load.audio('jump', 'audio/jump.ogg' );
-                game.load.audio('hurt', 'audio/Hit_Hurt.ogg' );
-                game.load.audio('pickup', 'audio/Pickup_Coin.ogg' );
-                game.load.audio('drum1', 'audio/slapjohnson-cajon-drum-loop-A.ogg' );
-                game.load.audio('drum2', 'audio/tropical.ogg' );
-                game.load.audio('drum3', 'audio/slapjohnson-cajon-drum-loop-B.ogg' );
+                game.load.audio('pickup', 'https://dl.dropboxusercontent.com/u/79935564/audio/Pickup_CoinLow.ogg' );
+                game.load.audio('music', 'https://dl.dropboxusercontent.com/u/79935564/audio/soundTrack.ogg' );
+                game.load.audio('jump', 'https://dl.dropboxusercontent.com/u/79935564/audio/JumpLow.ogg' );
+                game.load.audio('hurt', 'https://dl.dropboxusercontent.com/u/79935564/audio/Hit_HurtLow.ogg' );
+
             }
 
             function create ()
@@ -189,26 +179,18 @@
                 house.create(game, 0);
                 player.create(game, 0);
 
-                audioSea = game.add.audio('beach');
-                audioDing = game.add.audio('ding');
-                audioBase = game.add.audio('chiptune');
+
+//                audioBase.volume = 0.5;
+
                 audioJump = game.add.audio('jump');
                 audioHurt = game.add.audio('hurt');
                 audioItem = game.add.audio('pickup');
-                audioDrum1 = game.add.audio('drum1');
-                audioDrum2 = game.add.audio('drum2');
-                audioDrum3 = game.add.audio('drum3');
 
-                audioBase.volume = 0.35;
                 audioJump.volume = 0.05;
                 audioHurt.volume = 0.25;
                 audioItem.volume = 0.05;
-                audioDrum1.volume = 0.5;
-                audioDrum2.volume = 0.35;
-                audioDrum3.volume = 0.45;
 
                 shuffleObjects(game);
-
                 guiGroup = game.add.group();
 
                 mask = game.add.image(game.world.centerX, game.world.centerY, 'mask');
@@ -277,7 +259,6 @@
 //                        titleText.font = currentFont;
 //                        subTitleText.font = currentFont;
 
-
 //                      game.currentState = states.START;                       // set inside world.GrowTween(game);
                         break;
 
@@ -291,13 +272,17 @@
                                     player.sprite.body.allowGravity == false)
                             {
 
-                                audioSea.volume = 0.15;
-                                audioSea.loop = true;
-                                audioSea.play();
-
                                 alreadyPlayed = true;
-                                audioDing.volume = 0.5;
-                                audioDing.play();
+                                audioItem.play();
+
+//                                if ( loops == 1  && game.cache.isSoundDecoded('music'))
+//                                {
+                                if (game.cache.isSoundDecoded('music'))
+                                {
+                                    audioBase = game.add.audio('music');
+                                    audioBase.volume = 0.35;
+                                    audioBase.play();
+                                }
 
                                 infoText.visible = true;
                                 infoText.setText("GET READY?") ;
@@ -327,8 +312,6 @@
                                             .onComplete.add( function()
                                             {
                                                 infoText.visible = false;
-                                                if ( loops == 1)
-                                                    audioDrum1.play();
                                             }
                                         )
                                     }
@@ -392,7 +375,15 @@
                                 .onComplete.add( function(){
 
                                     player.sprite.animations.play('idle', 1, false);
-                                    reShuffleLoop();
+                                        reShuffleLoop();
+                                        if (game.cache.isSoundDecoded('music'))
+                                        {
+                                            if(audioBase == null){
+                                            audioBase = game.add.audio('music');
+                                            audioBase.volume = 0.35;
+                                            audioBase.play();
+                                            }
+                                        }
 
                                     game.add.tween(infoText).to({ alpha: 1 }, 2000, Phaser.Easing.Elastic.InOut, true, 100, false)
                                         .onComplete.add( function(){
@@ -409,16 +400,8 @@
                                                     infoText.visible = false;
                                                     player.flickering = false;
 
-                                                    })
+                                                    });
 
-                                            if ( loops == 2)
-                                                audioDrum2.play();
-
-                                            if ( loops == 3)
-                                                audioDrum3.play();
-
-                                            if ( loops == 6)
-                                                audioBase.play();
                                         })
                                 });
                             }
@@ -496,7 +479,9 @@
 //                console.log("taken " + itemType.constructor.name);
 
                 item.sprite.visible = false;
-                audioItem.play();
+
+                if (game.cache.isSoundDecoded('pickup'))
+                    audioItem.play();
 
                 switch(item.constructor.name)
                 {
@@ -597,7 +582,7 @@
                 shuffleObjects(game);
 
                 audioBase.stop();
-                audioSea.stop();
+//                audioSea.stop();
                 loops = 1;
                 objectsAmount = sec[loops];
                 score = 0;
@@ -621,7 +606,13 @@
 //                house.render();
 //                world.render();
 //                player.render();
-                //                game.debug.renderSpriteInfo(world, 32, 32);
+//                mask.visible = false;
+
+//                for ( var i = 0; i < objectsAmount; i++)
+//                    if ( objects[i].constructor.name == "SunCloud")
+//                   objects[i].render();
+
+//                game.debug.renderSpriteInfo(world, 32, 32);
 //                game.debug.renderLocalTransformInfo(world, 32, 160);
 //                game.debug.renderWorldTransformInfo(world, 32, 290);
 

@@ -18,21 +18,19 @@ var SunPalms = (function () {
 
     SunPalms.prototype.create = function (game, rotation) {
 
-        this.sprite = game.add.sprite(game.world.centerX, game.world.centerY +430, 'palms');
+        this.sprite = game.add.sprite(game.world.centerX, game.world.centerY + 430  , 'palms');
 
         game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
-        this.sprite.body.setSize(100, 200, 50, 440);
-        this.sprite.anchor.setTo(0.5, 0.5);
+        this.sprite.body.setSize(32, 32,  -16, -225);
+
+        this.sprite.anchor.setTo(0.5, 6.65);
 
         this.sprite.body.allowHorizontalDrag = false;
         this.sprite.body.immovable = true;
 
         this.sprite.allowRotation = true;
         this.sprite.angle = rotation;
-        this.sprite.reset(game.world.centerX-50, game.world.centerY - 10);
 
-        if (Math.random() > .5)
-            this.sprite.scale.x  = -1;
     };
 
     SunPalms.prototype.update = function (game) {
@@ -41,25 +39,25 @@ var SunPalms = (function () {
             game.physics.arcade.collide(player.sprite, this.sprite );
 
         this.sprite.angle -= .2;
-//        if ( game.input.keyboard.isDown(Phaser.Keyboard.W) )
-//        {
-//            this.sprite.body.velocity.y -= 10;
-//        }
-//        else if ( game.input.keyboard.isDown(Phaser.Keyboard.S) )
-//        {
-//            this.sprite.body.velocity.y += 10;
-//        }
-//
-//        if ( game.input.keyboard.isDown(Phaser.Keyboard.A) )
-//        {
-////            this.sprite.body.velocity.x -= 10;
+        if ( game.input.keyboard.isDown(Phaser.Keyboard.W) )
+        {
+            this.sprite.body.velocity.y -= 10;
+        }
+        else if ( game.input.keyboard.isDown(Phaser.Keyboard.S) )
+        {
+            this.sprite.body.velocity.y += 10;
+        }
+
+        if ( game.input.keyboard.isDown(Phaser.Keyboard.A) )
+        {
+            this.sprite.body.velocity.x -= 10;
 //            this.sprite.angle += 0.5;
-//        }
-//        else if ( game.input.keyboard.isDown(Phaser.Keyboard.D) )
-//        {
-////            this.sprite.body.velocity.x += 10;
+        }
+        else if ( game.input.keyboard.isDown(Phaser.Keyboard.D) )
+        {
+            this.sprite.body.velocity.x += 10;
 //            this.sprite.angle -= 0.5;
-//        }
+        }
     };
 
     SunPalms.prototype.render = function () {

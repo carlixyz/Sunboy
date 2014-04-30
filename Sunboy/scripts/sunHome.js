@@ -18,7 +18,7 @@ var SunHome = (function () {
 
         this.sprite = game.add.image(game.world.centerX, game.world.centerY +430, 'home');
 
-        this.sprite.anchor.setTo(0.5, 0.5);
+        this.sprite.anchor.setTo(0.5, 7.325);
         this.sprite.angle = rotation;
 //        this.sprite.body.immovable = true;
 
