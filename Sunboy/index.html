@@ -10,17 +10,19 @@
     <link rel="stylesheet" type="text/css" href="style.css" >
     <script type="text/javascript" language="JavaScript" src="scripts/main.js"></script>
     <script type="text/javascript" language="JavaScript" src="scripts/phaser.min.js"></script>
-    <script type="text/javascript" language="JavaScript" src="scripts/sunWorld.js"></script>
-    <script type="text/javascript" language="JavaScript" src="scripts/sunHome.js"></script>
-    <script type="text/javascript" language="JavaScript" src="scripts/sunBoy.js"></script>
-    <script type="text/javascript" language="JavaScript" src="scripts/sunPalms.js"></script>
-    <script type="text/javascript" language="JavaScript" src="scripts/sunCloud.js"></script>
-    <script type="text/javascript" language="JavaScript" src="scripts/sunPelican.js"></script>
-    <script type="text/javascript" language="JavaScript" src="scripts/sunCrab.js"></script>
-    <script type="text/javascript" language="JavaScript" src="scripts/sunCoco.js"></script>
-    <script type="text/javascript" language="JavaScript" src="scripts/sunHealth.js"></script>
-    <script type="text/javascript" language="JavaScript" src="scripts/sunApple.js"></script>
-    <script type="text/javascript" language="JavaScript" src="scripts/sunBanana.js"></script>
+    <!--<script type="text/javascript" language="JavaScript" src="scripts/sunWorld.js"></script>-->
+    <!--<script type="text/javascript" language="JavaScript" src="scripts/sunHome.js"></script>-->
+    <!--<script type="text/javascript" language="JavaScript" src="scripts/sunBoy.js"></script>-->
+    <!--<script type="text/javascript" language="JavaScript" src="scripts/sunPalms.js"></script>-->
+    <!--<script type="text/javascript" language="JavaScript" src="scripts/sunCloud.js"></script>-->
+    <!--<script type="text/javascript" language="JavaScript" src="scripts/sunPelican.js"></script>-->
+    <!--<script type="text/javascript" language="JavaScript" src="scripts/sunCrab.js"></script>-->
+    <!--<script type="text/javascript" language="JavaScript" src="scripts/sunCoco.js"></script>-->
+    <!--<script type="text/javascript" language="JavaScript" src="scripts/sunHealth.js"></script>-->
+    <!--<script type="text/javascript" language="JavaScript" src="scripts/sunApple.js"></script>-->
+    <!--<script type="text/javascript" language="JavaScript" src="scripts/sunBanana.js"></script>-->
+    <script type="text/javascript" language="JavaScript" src="scripts/gameLogic.min.js"></script>
+
 
 
     <!--<script type="text/javascript" src="/scripts/sunGame.js"></script>-->  <!--Game Logic added inside Body -->
@@ -153,6 +155,25 @@
 
                 Phaser.Canvas.addToDOM(game.canvas, "home", true);      // attach Phaser Canvas inside Web Content
                 game.stage.backgroundColor = '#FFFFFF';
+
+                infoText = game.add.text(game.world.centerX, game.world.centerY, "-o-");
+                infoText.anchor.setTo(0.5,0.5);
+                infoText.alpha = 0;
+
+                game.add.tween(infoText).to({ alpha: 1 }, 3000, Phaser.Easing.Elastic.InOut, true, 100, false).onComplete.add(
+                    function()
+                    {
+                        infoText.alpha = 1;
+                        infoText.visible = true;
+
+                        game.add.tween(infoText).to({ alpha: 0 }, 2000, Phaser.Easing.Elastic.InOut, true, 100, false).onComplete.add(
+                            function()
+                            {
+                                infoText.visible = false;
+                            }
+                        )
+                    }
+                );
 
                 player = new SunBoy(game);
                 world = new SunWorld(game);
@@ -316,28 +337,7 @@
                                         )
                                     }
                                 );
-// Some optional code
-//                                infoText.visible = true;
-//                                infoText.content = "GET READY";
-//                                infoText.alpha = 0;
-//                                infoText.y = 400;
-//
-//                                game.add.tween(infoText).to({ alpha: 1, y: 190 }, 2000, Phaser.Easing.Elastic.Out, true, 100, false)
-//                                        .onCompleteCallback( function()
-//                                        {
-//                                            infoText.content = "GO!";
-//                                            scoreText.visible = true;
-//                                            player.sprite.animations.play('run', 7, true);
-//                                            game.currentState = states.INGAME;
-//
-//                                            game.add.tween(infoText).to({ alpha: 0, y: 0 }, 2000, Phaser.Easing.Elastic.In, true, 100, false)
-//                                                    .onCompleteCallback( function()
-//                                                    {
-//                                                        infoText.visible = false;
-//                                                    }
-//                                            )
-//                                        }
-//                                );
+
                             }
 
 

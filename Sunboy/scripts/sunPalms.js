@@ -39,25 +39,25 @@ var SunPalms = (function () {
             game.physics.arcade.collide(player.sprite, this.sprite );
 
         this.sprite.angle -= .2;
-        if ( game.input.keyboard.isDown(Phaser.Keyboard.W) )
-        {
-            this.sprite.body.velocity.y -= 10;
-        }
-        else if ( game.input.keyboard.isDown(Phaser.Keyboard.S) )
-        {
-            this.sprite.body.velocity.y += 10;
-        }
-
-        if ( game.input.keyboard.isDown(Phaser.Keyboard.A) )
-        {
-            this.sprite.body.velocity.x -= 10;
-//            this.sprite.angle += 0.5;
-        }
-        else if ( game.input.keyboard.isDown(Phaser.Keyboard.D) )
-        {
-            this.sprite.body.velocity.x += 10;
-//            this.sprite.angle -= 0.5;
-        }
+//        if ( game.input.keyboard.isDown(Phaser.Keyboard.W) )
+//        {
+//            this.sprite.body.velocity.y -= 10;
+//        }
+//        else if ( game.input.keyboard.isDown(Phaser.Keyboard.S) )
+//        {
+//            this.sprite.body.velocity.y += 10;
+//        }
+//
+//        if ( game.input.keyboard.isDown(Phaser.Keyboard.A) )
+//        {
+//            this.sprite.body.velocity.x -= 10;
+////            this.sprite.angle += 0.5;
+//        }
+//        else if ( game.input.keyboard.isDown(Phaser.Keyboard.D) )
+//        {
+//            this.sprite.body.velocity.x += 10;
+////            this.sprite.angle -= 0.5;
+//        }
     };
 
     SunPalms.prototype.render = function () {
