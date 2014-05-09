@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html  xmlns="http://www.w3.org/1999/html">
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"  style="background-size: 100%; background-image:url('images/black1926.jpg'); ">
 
 <head>
     <title>SunHouse GameDev Studios</title>
@@ -9,16 +9,22 @@
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
     <link rel="stylesheet" type="text/css" href="style.css" >
     <script type="text/javascript" language="JavaScript" src="scripts/main.js"></script>
+    <!--<script> run(); </script>-->
+
 </head>
 
 <body onload="run()" >
 
 
 <div id="language">
-    <img src="images/us.png" style="width:2.5%;" onclick="SetLang('en')" accesskey="U"/>
-    <img src="images/br.png" style="width:2.5%;" onclick="SetLang('br')" accesskey="B"/>
-    <img src="images/ar.png" style="width:2.5%;" onclick="SetLang('es')" accesskey="A"/>
+    <img src="images/us.png" title="English (EN)" 	style="width:2.5%;" onclick="SetLang('en')" accesskey="U"/>
+    <img src="images/br.png" title="Português (PT)" style="width:2.5%;" onclick="SetLang('br')" accesskey="B"/>
+    <img src="images/ar.png" title="Español (ES)" 	style="width:2.5%;" onclick="SetLang('es')" accesskey="A"/>
 </div>
+
+<!--<div style=" position: absolute; margin-left: 128px; min-height: 96px; min-width: 256px; z-index: 0; background-color: #f8f8ff; opacity: 0.25;"></div>-->
+<!--<div class="marquee"></div>-->
+
 
 <header id="top">
     <div class="navigation">
@@ -28,13 +34,8 @@
         <div id="logo" >
             <a href="/">
                 <h1 class="randomFont" >
-                    <!--[if lt IE 9]>
-                    <img src="images/logo.png"  alt="SunHouse">
-                    <![endif]-->
+                    <img src="images/logo.png"  alt="SunHouse"/>
 
-                    <![if (gt IE 5)&(lt IE 8)]>
-                    <img src="images/isotipo_byn.svg" style="width:50px; height: 50px;">
-                    <![endif]>
 
                     SunHouse
                     <!--<embed src="images/isotipo_byn.svg" width="50px" height="50px" type="image/svg+xml" />-->
@@ -91,83 +92,87 @@
         <![endif]--> <!-- MS IExplorer Check Up start-->
 
         <section id="content" style="padding: 0 50px; text-align: justify;">
-                <h5  lang="es"> para iniciar <b>Hacer Click</b> en la imagen de portada (es necesario instalar el plug-in de Unity): <br/>  </h5>
-                <h5 style="display: none;" lang="en"> to start playing clic inside game's image (  Unity's plug-in needed ): <br/>  </h5>
-                <h5 style="display: none;" lang="br">pra iniciar jogo clicar na imagen do portada (fica necesario instalar o plug-in do Unity): <br/>  </h5>
+                <!--<h5  lang="es"> para iniciar <b>Hacer Click</b> en la imagen de portada (es necesario instalar el plug-in de Unity): <br/>  </h5>-->
+                <!--<h5 style="display: none;" lang="en"> to start playing clic inside game's image (  Unity's plug-in needed ): <br/>  </h5>-->
+                <!--<h5 style="display: none;" lang="br">pra iniciar jogo clicar na imagen do portada (fica necesario instalar o plug-in do Unity): <br/>  </h5>-->
+            <h5 style="font-size:14px;" lang="es"> <b>Hacer Click</b> en la imagen de portada para iniciar<br/>  </h5>
+            <h5 style="font-size:14px; display: none;" lang="en">Clic inside game's image to start playing   <br/>  </h5>
+            <h5 style="font-size:14px; display: none;" lang="br">Clicar na imagen do portada pra iniciar jogo  <br/>  </h5>
 
                 <article style="padding: 20px 0 ;">
                     <p lang="es">
-                        <a href="games/%d1angapiry86/WebPlayer.html">
+                        <a href="http://sunhouse.site90.com/games/Niangapiry86/Niangapiry86.html">
                             <!--<img src="images/works_11.gif" style="float: right; margin: 0 10px 0 35px;"     alt=""/>-->
-                            <img src="images/works_11.gif" style="float: right; margin: 0 0 0 48px;"     alt=""/>
+                            <img class="games" src="images/works_11.png" style="float: right; margin: 0 0 0 48px;"     alt=""/>
                         </a>
-                        <b><i>ÑANGAPIRY 86'</i></b>  (Versión Test Demo )  <br/>
-                        Clasica aventura de plataformas inspirado (muy libremente) en mitologías guaranies del nordeste,
-                        Los controles son: movimiento a traves de flechas de cursor, salto con barra 'espacio',
-                        correr/agarrar con tecla 'Ctrl' y usar item especial con tecla 'Alt'.
-                        Para eliminar a los gauchos es necesario aplastarlos con un salto encima primero y luego
-                        capturarlos con la tecla control para finalmente Lanzarlos(es posible usarlos como proyectiles
-                        para eliminar varios enemigos consecutivamente) .
+                        <b><i>ÑANGAPIRY 86'</i></b>  (Versión Test Demo)  <br/>
+                        Clasica aventura de plataformas inspirado (muy libremente) en mitologías guaranies del Litoral.
+                        <br/><b> Controles: </b> Para moverse use las "flechas" del teclado, salto con "espacio", correr/agarrar
+                        con tecla "Ctrl", usar item especial con tecla "Alt". Para eliminar a los gauchos es necesario aplastarlos
+                        con un salto encima primero y luego capturarlos con la tecla control para finalmente Lanzarlos
+                        (puedes usarlos como proyectiles para eliminar varios enemigos consecutivamente).
+
                     </p>
                     <p style="display: none;" lang="en">
-                        <a href="games/%d1angapiry86/WebPlayer.html">
-                            <img src="images/works_11.gif" style="float: right; margin: 0 0 0 48px;"     alt=""/>
+                        <a href="http://sunhouse.site90.com/games/Niangapiry86/Niangapiry86.html">
+                            <img class="games" src="images/works_11.png" style="float: right; margin: 0 0 0 48px;"     alt=""/>
                         </a>
                         <b><i>ÑANGAPIRY 86'</i></b>  (Versión Test Demo )  <br/>
-                        Classic platform adventure inspired (very loosely) on the northeast Guarani mythology,
-                        the controls are: Movement through arrow keys, jump with bar 'space', run / grab with 'Ctrl' key
-                        and use special item 'Alt '. To eliminate the need to crush gauchos with a jump first
+                        Classic platform adventure inspired (very loosely) on the Guarani mythology.
+                        <br/><b> Controls: </b>  Movement through arrow keys, jump with 'space', run / grab with 'Ctrl' key
+                        and use special item 'Alt'. To eliminate the need to crush gauchos with a jump first
                         and then catch up with the control key to finally Launch them (you may use as missiles to take
                         out multiple enemies consecutively).
                     </p>
                     <p style="display: none;" lang="br">
-                        <a href="games/%d1angapiry86/WebPlayer.html">
-                            <img src="images/works_11.gif" style="float: right; margin: 0 0 0 48px;"     alt=""/>
+                        <a href="http://sunhouse.site90.com/games/Niangapiry86/Niangapiry86.html">
+                            <img  class="games" src="images/works_11.png" style="float: right; margin: 0 0 0 48px;"     alt=""/>
                         </a>
                         <b><i>ÑANGAPIRY 86'</i></b>  (Versión Test Demo )  <br/>
-                        Aventura de plataforma clássica inspirada (muito vagamente) na mitologia Guarani nordeste,
-                        os controles são: Movimento através de teclas de seta, salto com 'espaço' bar,
-                        executar / agarrar com tecla "Ctrl" e use Alt item especial ''. Para eliminar a necessidade
-                        de esmagar os gaúshos com um primeiro salto e, em seguida, apanhar com a chave de controle para
-                        finalmente lançar-los (você pode usar como mísseis para tirar vários inimigos consecutivamente).
+                        Clássica aventura de plataformas, inspirado (livre interpretação) nas mitologias Guaraníes.
+                        <br/><b> Controles:</b> Para se movimentar utilize as setas do cursor, salto com "espaço", correr/agarrar com
+                        a tecla "Ctrl", usar item especial com a tecla "alt". Para eliminar os gaúchos é necessário pular
+                        em cima da cabeça primeiro e em seguida capturá-los com a tecla "ctrl" para finalmente lança-los
+                        (é possível usá-los como projéteis para eliminar vários inimigos consecutivamente).
                     </p>
                 </article>
 
                 <article>
                     <p  lang="es">
-                        <a href="games/Ufo/Ufo web.html">
+                        <a href="http://sunhouse.site90.com/games/Ufo/Ufo%20web.html">
                             <!--<img src="images/works_14.jpg" style="float: right; margin: 0 10px 10px 35px;"    alt=""/>-->
-                            <img src="images/works_14.jpg" style="float: right; margin: 0 0 0 48px;"    alt=""/>
+                            <img class="games" src="images/works_14.png" style="float: right; margin: 0 0 0 48px;"    alt=""/>
                         </a>
                         <b><i>EUFORIA!</i></b> (Juego Completo)  <br/>
-                        Sencillo juego para entretenerse un rato en Web o en dispositivos moviles, encarnamos a un
-                        alienigena durante sus abducciones, La mayor parte de la acción transcurre durante una noche
-                        en el cerro Uritorco pero hay varias sorpresas  adelante para el que es perseverante.
-                        El sistema de control es con mouse o dedo en pantallas tactiles: movemos nuestra nave empujando
-                        encima; para abducír humanos u otras cosas basta con tocar y mantener el dedo encima del objectivo
-                        hasta atraparlo.
+                        Sencillo juego para entretenerse un rato en Web o dispositivos moviles, encarnamos a un alienigena
+                        durante sus abducciones, la mayor parte de la acción transcurre durante una noche en el cerro
+                        Uritorco pero hay varias sorpresas adelante para el que persevera.
+                        <br/><b> Controles: </b>  con mouse o dedo en pantallas táctiles: movemos nuestra nave
+                        tocandola y arrastrandola; para abducír humanos u otras cosas basta con tocar y mantener el dedo
+                        encima del objectivo hasta atraparlo.
+
                     </p>
                     <p style="display: none;" lang="en">
-                        <a href="games/Ufo/Ufo web.html">
-                            <img src="images/works_14.jpg" style="float: right; margin: 0 0 0 48px;"    alt=""/>
+                        <a href="http://sunhouse.site90.com/games/Ufo/Ufo%20web.html">
+                            <img class="games" src="images/works_14.png" style="float: right; margin: 0 0 0 48px;"    alt=""/>
                         </a>
                         <b><i>EUFORIA!</i></b> (almost Full Game)  <br/>
-                        Simple game for a while entertained the Web or mobile devices, you play a during alien abductions,
+                        Simple entertainment for a while, in the Web or mobile devices, you play as an alien doing abductions,
                         Most of the action takes place overnight on the hill Uritorco but several surprises ahead for
-                        that is persevering. The control system is with mouse or finger on touch screens:
+                        that is persevering. <br/><b> Controls: </b> with mouse or finger on touching screens:
                         move our ship pushing above, to abduct humans or other things just tap and hold your finger
                         on the objective catch up.
                     </p>
                     <p style="display: none;" lang="br">
-                        <a href="games/Ufo/Ufo web.html">
-                            <img src="images/works_14.jpg" style="float: right; margin: 0 0 0 48px;"    alt=""/>
+                        <a href="http://sunhouse.site90.com/games/Ufo/Ufo%20web.html">
+                            <img class="games" src="images/works_14.png" style="float: right; margin: 0 0 0 48px;"    alt=""/>
                         </a>
                         <b><i>EUFORIA!</i></b> (Juego Completo)  <br/>
-                        Jogo simples para um Web enquanto divertir ou em dispositivos móveis, encarnar um estrangeiro
-                        durante suas abduções, maior parte da ação se passa durante uma noite na colina Uritorco mas
-                        várias surpresas para frente que é perseverante. O sistema de controle é com o mouse ou dedo
-                        em telas sensíveis ao toque: subir empurrando nosso navio, para raptar os seres humanos ou outras coisas
-                        apenas toque e segure o dedo sobre o objetivo de capturá-lo.
+                        É um jogo simples para se entreter, pode ser jogado em web ou dispositivos móveis. Encarnamos um
+                        alienígena durante suas abduções, a maior parte da ação acontece durante uma noite no "cerro uritorco",
+                        porém existem varias surpresas no decorrer do jogo. <br/><b> Controles: </b> com mouse ou dedo
+                        (em telas touchscreen) movimentamos nossa nave, puxando cima abduzimos humanos ou outras coisas.
+                        É necessarios puxar e manter pressionado em cima do objetivo para pegá-lo
                     </p>
                 </article>
 
@@ -197,5 +202,4 @@
 
 </body>
 </html>
-
 

@@ -95,7 +95,7 @@ div.wrapper /* This wraps the Header Bar */
     z-index:10;
     height: 96px;
 
-    font-family: "lobster_1.4regular", ,fantasy;
+    font-family: "lobster_1.4regular",'bauhaus_93regular', 'Myriadpro-semibold', Helvetica, fantasy;
     background-color: #131313;
     float:left;
     color: white;
@@ -342,6 +342,46 @@ img {
 img:hover{
     border: #f0f8ff;
 }
+
+img {
+    -webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
+    display: inline-block;
+    border: 0;
+    -ms-interpolation-mode: bicubic;
+    vertical-align: middle;
+    vertical-position: normal;
+    text-align: center;
+}
+
+
+img.games{
+
+    /*color: inherit;*/
+    /*float: right; margin: 0 0 0 48px;*/
+
+    -webkit-transition: all 1s ease-in-out ;
+    -moz-transition: all 1s ease-in-out;
+    -o-transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out;
+}
+
+img.games:hover{
+    /*box-shadow:  0 0 20px #e46702 ;*/
+    box-shadow:  10px 10px #e46702 ;
+    /*box-shadow:    0 10px #e46702 ;*/
+    /*box-shadow:  10px 10px 50px #e46702 ;*/
+    /*box-shadow:  10px 10px 50px white ;*/
+
+
+    /*box-shadow:  10px 10px 5px 10px #e46702 inset;*/
+
+    /* #e46702 0.5em 0.5em 0.5em;*/
+    /*-1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;*/
+    /*opacity:0.5;*/
+}
+
+
 
 div#language{
     position:relative;
