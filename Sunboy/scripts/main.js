@@ -141,10 +141,5 @@
             this.setCookie(name, "", -1);
         };
 
-    }                                                                                                                       // namespace utilitario para manejar Cookies
-
-
-
-
-
+    }
 

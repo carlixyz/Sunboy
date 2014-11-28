@@ -57,7 +57,18 @@ var SunBoy = (function () {
         {
             this.sprite.animations.play('run', 7, true);
 
-            if (game.input.mousePointer.isDown || game.input.mousePointer.onTap || game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR))
+            game.input.onDown.add(function()
+            {
+                this.sprite.body.velocity.y = -170;
+                this.sprite.body.bounce.setTo(0, 0.35);
+                this.sprite.animations.play('jump', 1, true);
+
+                if (game.cache.isSoundDecoded('jump'))
+                    audioJump.play();
+            }, this);
+
+//            if (game.input.mousePointer.isDown || game.input.mousePointer.onTap || game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR))
+            if ( game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR))
             {
                 this.sprite.body.velocity.y = -170;
                 this.sprite.body.bounce.setTo(0, 0.35);
@@ -67,11 +78,16 @@ var SunBoy = (function () {
                     audioJump.play();
             }
         }
-        else if (game.input.mousePointer.isDown && this.sprite.body.velocity.y > 0)
+        else if (game.input.keyboard.isDown( Phaser.Keyboard.SPACEBAR) && this.sprite.body.velocity.y > 0)
         {
             this.sprite.body.velocity.y -= 4;
             this.sprite.animations.play('jump', 1, true);
         }
+//        else if (game.input.mousePointer.isDown && this.sprite.body.velocity.y > 0)
+//        {
+//            this.sprite.body.velocity.y -= 4;
+//            this.sprite.animations.play('jump', 1, true);
+//        }
 
 
 //        if ( game.input.keyboard.isDown(Phaser.Keyboard.W) )

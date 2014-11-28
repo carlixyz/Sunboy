@@ -10,20 +10,7 @@
     <link rel="stylesheet" type="text/css" href="style.css" >
     <script type="text/javascript" language="JavaScript" src="scripts/main.js"></script>
     <script type="text/javascript" language="JavaScript" src="scripts/phaser.min.js"></script>
-    <!--<script type="text/javascript" language="JavaScript" src="scripts/sunWorld.js"></script>-->
-    <!--<script type="text/javascript" language="JavaScript" src="scripts/sunHome.js"></script>-->
-    <!--<script type="text/javascript" language="JavaScript" src="scripts/sunBoy.js"></script>-->
-    <!--<script type="text/javascript" language="JavaScript" src="scripts/sunPalms.js"></script>-->
-    <!--<script type="text/javascript" language="JavaScript" src="scripts/sunCloud.js"></script>-->
-    <!--<script type="text/javascript" language="JavaScript" src="scripts/sunPelican.js"></script>-->
-    <!--<script type="text/javascript" language="JavaScript" src="scripts/sunCrab.js"></script>-->
-    <!--<script type="text/javascript" language="JavaScript" src="scripts/sunCoco.js"></script>-->
-    <!--<script type="text/javascript" language="JavaScript" src="scripts/sunHealth.js"></script>-->
-    <!--<script type="text/javascript" language="JavaScript" src="scripts/sunApple.js"></script>-->
-    <!--<script type="text/javascript" language="JavaScript" src="scripts/sunBanana.js"></script>-->
     <script type="text/javascript" language="JavaScript" src="scripts/gameLogic.min.js"></script>
-
-
 
     <!--<script type="text/javascript" src="/scripts/sunGame.js"></script>-->  <!--Game Logic added inside Body -->
 
@@ -114,7 +101,7 @@
             *
             */
 
-            var game = new Phaser.Game(900, 480, Phaser.CANVAS, '', { preload: preload, create: create, update : update, render : render });
+            var game = new Phaser.Game(900, 480, Phaser.CANVAS, '', { preload: preload, create: create, update : update });
 
             var alreadyPlayed = false;
             var loops       = 1;                                            // number of loops to use as: sec[loops]
@@ -156,6 +143,26 @@
                 Phaser.Canvas.addToDOM(game.canvas, "home", true);      // attach Phaser Canvas inside Web Content
                 game.stage.backgroundColor = '#FFFFFF';
 
+                //  Unless you specifically know your game needs to support multi-touch I would recommend setting this to 1
+                game.input.maxPointers = 1;
+
+                //  Phaser will automatically pause if the browser tab the game is in loses focus. You can disable that here:
+                game.stage.disableVisibilityChange = true;
+
+                if (!this.game.device.desktop)
+                {
+                    //  Here goes mobile settings.
+                    //  In this case we're saying "scale the game, no lower than 480x260 and no higher than 1024x768"
+                    game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+                    game.scale.minWidth = 480;
+                    game.scale.minHeight = 260;
+                    game.scale.maxWidth = 900;
+                    game.scale.maxHeight = 480;
+                    game.scale.forceLandscape = true;
+                    game.scale.pageAlignHorizontally = true;
+                    game.scale.setScreenSize(true);
+                }
+
                 infoText = game.add.text(game.world.centerX, game.world.centerY, "-o-");
                 infoText.anchor.setTo(0.5,0.5);
                 infoText.alpha = 0;
@@ -193,8 +200,8 @@
 
             function create ()
             {
-                console.log("HI WORLD");
-                console.log(currentFont);
+//                console.log("HI WORLD");
+//                console.log(currentFont);
 
                 world.create(game, -360);
                 house.create(game, 0);
@@ -223,7 +230,7 @@
                 scoreText.anchor.setTo(0.5,0.5);
                 guiGroup.add(scoreText);
 
-                infoText = game.add.text(game.world.centerX, game.world.centerY -50, "READY?", style);
+                infoText = game.add.text(game.world.centerX, game.world.centerY -50, "Push logo to start", style);
                 infoText.anchor.setTo(0.5,0.5);
                 guiGroup.add(infoText);
 
@@ -599,7 +606,7 @@
 
             }
 
-            function render() {
+//            function render() {
 
                 // Sprite debug info
 //                palms.render();
@@ -617,7 +624,7 @@
 //                game.debug.renderWorldTransformInfo(world, 32, 290);
 
 //                game.debug.renderText("Time until event: " + game.time.events.duration, 32, 32);
-            }
+//            }
 
         </script>
 
